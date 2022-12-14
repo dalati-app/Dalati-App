@@ -9,15 +9,36 @@
     android:orientation="vertical"
     tools:context=".ui.activities.SignUpActivity">
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="top|center"
-        android:src="@drawable/logo" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="-220dp"
+            android:layout_marginTop="-40dp"
+            android:src="@drawable/background_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="top|center"
+            android:layout_marginTop="70dp"
+            android:src="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="-20dp"
         android:layout_marginBottom="20dp"
         android:orientation="vertical">
 
@@ -27,7 +48,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
@@ -219,7 +239,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/already_have_an_account"
-                android:textColor="@color/mainColor"
+                android:textColor="#5D5F61"
                 android:textSize="14sp" />
 
             <TextView
