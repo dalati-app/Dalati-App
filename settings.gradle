@@ -14,5 +14,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "goRead_customer"
+rootProject.name = "Dalati"
 include ':app'

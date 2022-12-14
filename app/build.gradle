@@ -1,7 +1,5 @@
 plugins {
     id 'com.android.application'
-    id 'com.google.gms.google-services'
-    id 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 
 
 }
@@ -96,6 +94,8 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.0'
     implementation 'com.github.f0ris.sweetalert:library:1.5.1'
     implementation 'com.google.firebase:firebase-messaging:23.0.0'
+    implementation 'com.hbb20:ccp:2.5.0'
+
 
 
 
