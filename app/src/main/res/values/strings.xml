@@ -6,6 +6,10 @@
     <string name="sign_up">Sign Up</string>
     <string name="sign_in">Sign in</string>
     <string name="already_have_an_account">Already have an account?</string>
+    <string name="verify_account">verify Account</string>
+    <string name="enter_verification_code_sent_to_your_phone">Enter verification code sent to your phone</string>
+    <string name="resend_code">Resend code</string>
+    <string name="verify">Verify</string>
 
 
 </resources>

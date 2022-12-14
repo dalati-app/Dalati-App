@@ -1,0 +1,57 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--    margin Size-->
+    <dimen name="xsmall_margin">6dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="medium_margin">16dp</dimen>
+    <dimen name="large_margin">32dp</dimen>
+    <dimen name="xlarge_margin">64dp</dimen>
+    <dimen name="xxlarge_margin">128dp</dimen>
+    <dimen name="xxxlarge_margin">256dp</dimen>
+
+    <!-- padding Size -->
+    <dimen name="xsmall_padding">8dp</dimen>
+    <dimen name="small_padding">12dp</dimen>
+    <dimen name="medium_padding">16dp</dimen>
+    <dimen name="large_padding">32dp</dimen>
+    <dimen name="xlarge_padding">64dp</dimen>
+    <dimen name="xxlarge_padding">128dp</dimen>
+    <dimen name="xxxlarge_padding">256dp</dimen>
+
+    <!-- radius -->
+    <dimen name="small_radius">8dp</dimen>
+    <dimen name="medium_radius">10dp</dimen>
+    <dimen name="large_radius">14dp</dimen>
+
+    <!--    text Size-->
+    <dimen name="xxsmall_txt_size">8sp</dimen>
+    <dimen name="xsmall_txt_size">12sp</dimen>
+    <dimen name="small_txt_size">14sp</dimen>
+    <dimen name="medium_txt_size">16sp</dimen>
+    <dimen name="large_txt_size">18sp</dimen>
+    <dimen name="xlarge_txt_size">24sp</dimen>
+    <dimen name="xxlarge_txt_size">30sp</dimen>
+    <dimen name="cv_corner">10dp</dimen>
+    <dimen name="cv_elv">4dp</dimen>
+
+
+    <!--genaral spacing-->
+    <dimen name="spacing_xsmall">2dp</dimen>
+    <dimen name="spacing_small">3dp</dimen>
+    <dimen name="spacing_medium">5dp</dimen>
+    <dimen name="spacing_xmedium">7dp</dimen>
+    <dimen name="spacing_middle">10dp</dimen>
+    <dimen name="spacing_large">15dp</dimen>
+    <dimen name="spacing_smlarge">18dp</dimen>
+    <dimen name="spacing_mlarge">20dp</dimen>
+    <dimen name="spacing_mxlarge">25dp</dimen>
+    <dimen name="spacing_xlarge">35dp</dimen>
+    <dimen name="spacing_xmlarge">40dp</dimen>
+    <dimen name="spacing_xxlarge">50dp</dimen>
+    <dimen name="spacing_xxxlarge">55dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+
+</resources>
