@@ -18,8 +18,8 @@
             android:id="@+id/img"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginStart="-220dp"
-            android:layout_marginTop="-40dp"
+            android:layout_marginStart="-280dp"
+            android:layout_marginTop="-60dp"
             android:src="@drawable/background_blue"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -28,14 +28,13 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="top|center"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="50dp"
             android:src="@drawable/logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -86,13 +85,11 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="1dp"
             app:boxCornerRadiusBottomEnd="12dp"
 
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
             app:boxCornerRadiusTopStart="12dp"
-            app:errorEnabled="true"
             app:passwordToggleEnabled="true"
             app:startIconDrawable="@drawable/ic_lock"
             app:startIconTint="@color/mainColor"
@@ -113,6 +110,14 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/don_t_have_an_account"
+            android:textColor="#5D5F61"
+            android:textSize="12sp" />
 
         <FrameLayout
             android:layout_width="match_parent"

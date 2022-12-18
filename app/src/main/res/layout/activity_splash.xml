@@ -14,25 +14,27 @@
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="70dp"
         android:src="@drawable/logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/amiri"
         android:text="اللَّهُمَّ رَبَّ الضَّالَّةِ ، رُدَّ عَلَيَّ ضَالَّتِي بِقُدْرَتِكَ وَسُلْطَانِكَ "
         android:textColor="@color/mainColor"
         android:textSize="20sp"
-        android:layout_marginBottom="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "140415326593",
+    "firebase_url": "https://dalati-66da5-default-rtdb.firebaseio.com",
+    "project_id": "dalati-66da5",
+    "storage_bucket": "dalati-66da5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140415326593:android:e0f747cbb915c9acd67080",
+        "android_client_info": {
+          "package_name": "com.dalati"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "140415326593-i2bp9afhu2376efa0qt0j3ie3i751k1k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp2Uyxh7YzMugBC7-n_8ZUbat07IP_Y7c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "140415326593-i2bp9afhu2376efa0qt0j3ie3i751k1k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
