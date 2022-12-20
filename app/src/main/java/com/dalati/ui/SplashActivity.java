@@ -9,10 +9,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import com.dalati.MainActivity;
 import com.dalati.R;
-import com.dalati.ui.activities.LoginActivity;
-import com.google.firebase.auth.FirebaseAuth;
+import com.dalati.ui.activities.auth.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

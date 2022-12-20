@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.dalati"
-        minSdk 21
+        minSdk 23
         targetSdk 31
         versionCode 4
         versionName "4.0"
@@ -98,6 +98,13 @@ dependencies {
     implementation 'com.hbb20:ccp:2.5.0'
 
 
+    implementation 'com.github.andreasagap:LoadingButtonLibrary:v1.0'
+    implementation 'com.github.koushikcse:LoadingButton:1.7'
+
+    implementation 'com.github.yatindeokar:MyLoadingButton:v1.0.1'
+    implementation 'com.github.ismaeldivita:chip-navigation-bar:1.4.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.7.10'
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 
 
 }

@@ -8,7 +8,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:scrollbars="none"
-    tools:context=".ui.activities.SignUpActivity">
+    tools:context=".ui.activities.auth.SignUpActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/reg_name"
+                    android:id="@+id/et_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Full Name"
@@ -99,7 +99,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/reg_email"
+                    android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter Email"
@@ -131,7 +131,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/reg_password"
+                    android:id="@+id/et_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter Password"
@@ -160,6 +160,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
@@ -175,24 +176,24 @@
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_age"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Age"
                         android:imeOptions="actionNext"
+                        android:inputType="number"
                         android:singleLine="true"
-                        android:textColorHint="@color/mainColor"
-
-
-                        />
+                        android:textColorHint="@color/mainColor" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
+                    android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:hint="Gender"
                     app:boxCornerRadiusBottomEnd="12dp"
                     app:boxCornerRadiusBottomStart="12dp"
                     app:boxCornerRadiusTopEnd="12dp"
@@ -202,14 +203,11 @@
                     app:startIconDrawable="@drawable/ic_person"
                     app:startIconTint="@color/mainColor">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <AutoCompleteTextView
+                        android:id="@+id/dropdown_gender"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Gender"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:textColorHint="@color/mainColor" />
-
+                        android:inputType="none" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
@@ -260,7 +258,7 @@
                     app:startIconTint="@color/mainColor">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/reg_phone"
+                        android:id="@+id/et_phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Eneter Phone"
@@ -290,6 +288,15 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
+
+                <com.github.ybq.android.spinkit.SpinKitView
+                    android:id="@+id/progressBar"
+                    style="@style/SpinKitView.DoubleBounce"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="invisible"
+                    app:SpinKit_Color="@color/mainColor" />
 
 
             </FrameLayout>

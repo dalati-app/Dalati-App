@@ -3,12 +3,12 @@ package com.dalati.ui.models;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    String id, name, email, phone, user_type, token, gender, birthDate;
+    String id, name, email, phone, user_type, token, gender, age,imgUrl;
 
     public User() {
     }
 
-    public User(String id, String name, String email, String phone, String user_type, String token, String gender, String birthDate) {
+    public User(String id, String name, String email, String phone, String user_type, String token, String gender, String age) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -16,7 +16,16 @@ public class User implements Serializable {
         this.user_type = user_type;
         this.token = token;
         this.gender = gender;
-        this.birthDate = birthDate;
+        this.imgUrl = "Default";
+        this.age = age;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public String getId() {
@@ -75,11 +84,11 @@ public class User implements Serializable {
         this.gender = gender;
     }
 
-    public String getBirthDate() {
-        return birthDate;
+    public String getage() {
+        return age;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+    public void setage(String age) {
+        this.age = age;
     }
 }

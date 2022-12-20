@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/custom_input"
 
     android:orientation="vertical">
@@ -156,7 +157,7 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/btnSignUp"
+                android:id="@+id/btnVerify"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -166,13 +167,14 @@
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
-            <ProgressBar
+            <com.github.ybq.android.spinkit.SpinKitView
                 android:id="@+id/progressBar"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                style="@style/SpinKitView.DoubleBounce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:outlineAmbientShadowColor="@color/mainColor"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                app:SpinKit_Color="@color/mainColor" />
         </FrameLayout>
 
 

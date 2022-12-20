@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+
+
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home"
+        app:cnb_iconColor="@color/black"
+        app:cnb_textColor="@color/black"
+        android:iconTint="@color/white"
+        app:cnb_backgroundColor="@color/white"
+        />
+
+
+    <item
+        android:id="@+id/nav_explore"
+        android:icon="@drawable/ic_baseline_explore_24"
+        android:title="Explore"
+        app:cnb_iconColor="@color/black"
+        app:cnb_textColor="@color/black"
+        app:cnb_backgroundColor="@color/white"/>
+
+    <item
+        android:id="@+id/nav_fav"
+        android:icon="@drawable/ic_email"
+        android:title="Chat"
+        app:cnb_iconColor="@color/white"
+        app:cnb_textColor="@color/white"
+        app:cnb_backgroundColor="@color/white"/>
+
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        app:cnb_iconColor="@color/white"
+        app:cnb_textColor="@color/white"
+        android:title="Account"
+        app:cnb_backgroundColor="@color/white"/>
+
+
+
+
+</menu>
