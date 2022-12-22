@@ -5,43 +5,39 @@
     >
 
 
-
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:title="Home"
-        app:cnb_iconColor="@color/black"
-        app:cnb_textColor="@color/black"
+        android:icon="@drawable/ic_homeic_home"
         android:iconTint="@color/white"
+        android:title="Home"
         app:cnb_backgroundColor="@color/white"
-        />
+        app:cnb_iconColor="@color/black"
+        app:cnb_textColor="@color/black" />
 
 
     <item
         android:id="@+id/nav_explore"
-        android:icon="@drawable/ic_baseline_explore_24"
+        android:icon="@drawable/ic_discover"
         android:title="Explore"
+        app:cnb_backgroundColor="@color/white"
         app:cnb_iconColor="@color/black"
-        app:cnb_textColor="@color/black"
-        app:cnb_backgroundColor="@color/white"/>
+        app:cnb_textColor="@color/black" />
 
     <item
-        android:id="@+id/nav_fav"
-        android:icon="@drawable/ic_email"
+        android:id="@+id/nav_chat"
+        android:icon="@drawable/ic_sms"
         android:title="Chat"
-        app:cnb_iconColor="@color/white"
-        app:cnb_textColor="@color/white"
-        app:cnb_backgroundColor="@color/white"/>
+        app:cnb_backgroundColor="@color/white"
+        app:cnb_iconColor="@color/black"
+        app:cnb_textColor="@color/black" />
 
     <item
         android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_baseline_account_circle_24"
-        app:cnb_iconColor="@color/white"
-        app:cnb_textColor="@color/white"
+        android:icon="@drawable/ic_profile"
         android:title="Account"
-        app:cnb_backgroundColor="@color/white"/>
-
-
+        app:cnb_backgroundColor="@color/white"
+        app:cnb_iconColor="@color/black"
+        app:cnb_textColor="@color/black" />
 
 
 </menu>

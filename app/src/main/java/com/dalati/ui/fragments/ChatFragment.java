@@ -1,25 +1,21 @@
 package com.dalati.ui.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.fragment.app.Fragment;
-
 import com.dalati.R;
-import com.dalati.ui.activities.ReportActivity;
-import com.google.android.material.card.MaterialCardView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
+ * Use the {@link ChatFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener {
-    MaterialCardView cvLost, cvFound;
-    View view;
+public class ChatFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,7 +26,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private String mParam1;
     private String mParam2;
 
-    public HomeFragment() {
+    public ChatFragment() {
         // Required empty public constructor
     }
 
@@ -40,11 +36,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
+     * @return A new instance of fragment ChatFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
+    public static ChatFragment newInstance(String param1, String param2) {
+        ChatFragment fragment = new ChatFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,31 +61,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_home, container, false);
-        defineViews();
-        return view;
-    }
-
-    private void defineViews() {
-        cvLost = view.findViewById(R.id.cvLost);
-        cvFound = view.findViewById(R.id.cvFound);
-        cvLost.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(getContext(), ReportActivity.class);
-        switch (view.getId()) {
-            case R.id.cvFound:
-                intent.putExtra("report_type", 1);
-                break;
-
-            case R.id.cvLost:
-                intent.putExtra("report_type", 2);
-                break;
-
-        }
-        startActivity(intent);
-
+        return inflater.inflate(R.layout.fragment_chat, container, false);
     }
 }
