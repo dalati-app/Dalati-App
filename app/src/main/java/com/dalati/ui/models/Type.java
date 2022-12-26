@@ -10,6 +10,7 @@ public class Type {
         this.categoryId = categoryId;
     }
 
+
     public String getId() {
         return id;
     }

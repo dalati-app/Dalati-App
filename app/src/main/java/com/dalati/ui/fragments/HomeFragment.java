@@ -1,5 +1,6 @@
 package com.dalati.ui.fragments;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.google.android.material.card.MaterialCardView;
 public class HomeFragment extends Fragment implements View.OnClickListener {
     MaterialCardView cvLost, cvFound;
     View view;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,6 +76,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         cvLost = view.findViewById(R.id.cvLost);
         cvFound = view.findViewById(R.id.cvFound);
         cvLost.setOnClickListener(this);
+
+
     }
 
     @Override

@@ -1,14 +1,40 @@
 package com.dalati.ui.fragments;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.ImageButton;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.dalati.R;
+import com.dalati.ui.activities.SearchActivity;
+import com.dalati.ui.adapters.ReportAdapter;
+import com.dalati.ui.models.Category;
+import com.dalati.ui.models.Report;
+import com.dalati.ui.models.Type;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +42,29 @@ import com.dalati.R;
  * create an instance of this fragment.
  */
 public class ExploreFragment extends Fragment {
+    ImageButton btnSearch, btnGrid, btnLinear, btnFilter;
+    View view;
+    Dialog filterDialog;
+
+    ArrayList<String> drop_categoryList = new ArrayList<>();
+    AutoCompleteTextView drop_menu_category;
+    ArrayAdapter<String> adapter_category;
+
+    ArrayList<String> drop_typeList = new ArrayList<>();
+    AutoCompleteTextView drop_menu_type;
+    ArrayAdapter<String> adapter_type;
+
+    DatabaseReference databaseReference;
+    List<Category> categoryList;
+    List<Type> typeList;
+    List<Report> reportList;
+    RecyclerView recycler_reports;
+
+    String currentLang, categoryId, typeId;
+    int categoryIndex, typeIndex;
+
+    ReportAdapter reportAdapter;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +110,229 @@ public class ExploreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_explore, container, false);
+        view = inflater.inflate(R.layout.fragment_explore, container, false);
+        defineViews();
+        getCategories();
+        filtering();
+        return view;
     }
+
+    private void defineViews() {
+
+        btnGrid = view.findViewById(R.id.btnGrid);
+        btnLinear = view.findViewById(R.id.btnLinear);
+        btnSearch = view.findViewById(R.id.btnSearch);
+        btnFilter = view.findViewById(R.id.btnFilter);
+        recycler_reports = view.findViewById(R.id.reports_recycler);
+
+        recycler_reports.setHasFixedSize(true);
+        recycler_reports.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        categoryList = new ArrayList<>();
+        typeList = new ArrayList<>();
+        reportList = new ArrayList<>();
+        reportAdapter = new ReportAdapter(getActivity());
+
+
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), SearchActivity.class));
+                getActivity().overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
+            }
+        });
+
+        btnFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterDialog.show();
+            }
+        });
+    }
+
+    private void filtering() {
+        filterDialog = new Dialog(getContext());
+        filterDialog.setContentView(R.layout.filter_dialog);
+        filterDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        Button btnFilter;
+
+        drop_menu_category = filterDialog.findViewById(R.id.dropdown_category);
+        drop_menu_type = filterDialog.findViewById(R.id.dropdown_type);
+        btnFilter = filterDialog.findViewById(R.id.btnFilter);
+
+        btnFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<Report> tempReportList = new ArrayList<>();
+                for (Report report : reportList) {
+                    System.out.println("Dalati cId: "+report.getCategory_id());
+                    System.out.println("Dalati selected: "+categoryId);
+                    if (categoryId.equals(report.getCategory_id())) {
+                        tempReportList.add(report);
+                    }
+                }
+
+
+                reportAdapter.setReportList(tempReportList);
+                filterDialog.dismiss();
+
+
+            }
+        });
+
+        drop_menu_category.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                categoryIndex = i;
+                categoryId = categoryList.get(i).getId();
+                drop_menu_type.setText("Choose Type");
+                databaseReference.child("Types").child(categoryId).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        typeList.clear();
+                        drop_typeList.clear();
+                        for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                            Type type = postSnapshot.getValue(Type.class);
+                            typeList.add(type);
+                        }
+                        currentLang = Locale.getDefault().getLanguage();
+                        switch (currentLang) {
+                            case "ar":
+                                for (int i = 0; i < typeList.size(); i++) {
+                                    drop_typeList.add(typeList.get(i).getNameAr());
+                                }
+                                break;
+
+
+                            case "en":
+                                for (int i = 0; i < typeList.size(); i++) {
+                                    drop_typeList.add(typeList.get(i).getNameEn());
+                                }
+                                break;
+                        }
+
+                        adapter_type = new ArrayAdapter<String>(getContext(), R.layout.filter_item, drop_typeList);
+                        drop_menu_type.setAdapter(adapter_type);
+                    }
+
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+            }
+        });
+
+        drop_menu_type.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                typeIndex = i;
+                typeId = typeList.get(i).getId();
+            }
+        });
+
+
+    }
+
+    public void saveObjectToSharedPreference(Object object) {
+        SharedPreferences mPrefs = getContext().getSharedPreferences("DB", Context.MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(object);
+        prefsEditor.putString("Category", json);
+        prefsEditor.commit();
+
+
+    }
+    private void getCategories() {
+
+        databaseReference.child("Types").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+
+                        for (DataSnapshot postSnapshot2 : postSnapshot.getChildren()) {
+                            Type type = postSnapshot2.getValue(Type.class);
+                            typeList.add(type);
+                        }
+                      //  reportAdapter.setTypeList(typeList);
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        databaseReference.child("Categories").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    Category category = postSnapshot.getValue(Category.class);
+                    categoryList.add(category);
+                }
+               // reportAdapter.setCategoryList(categoryList);
+               // saveObjectToSharedPreference(categoryList);
+
+
+                currentLang = Locale.getDefault().getLanguage();
+                switch (currentLang) {
+                    case "ar":
+                        for (int i = 0; i < categoryList.size(); i++) {
+                            drop_categoryList.add(categoryList.get(i).getNameAr());
+                        }
+                        break;
+
+
+                    case "en":
+                        for (int i = 0; i < categoryList.size(); i++) {
+                            drop_categoryList.add(categoryList.get(i).getNameEn());
+                        }
+                        break;
+                }
+
+                adapter_category = new ArrayAdapter<String>(getContext(), R.layout.filter_item, drop_categoryList);
+                drop_menu_category.setAdapter(adapter_category);
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        databaseReference.child("Reports").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    reportList.clear();
+                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                        Report report = postSnapshot.getValue(Report.class);
+                        reportList.add(report);
+                    }
+                    reportAdapter.setReportList(reportList);
+                    recycler_reports.setAdapter(reportAdapter);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        /*   */
+
+    }
+
+
 }

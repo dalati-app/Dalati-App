@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.dalati">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,16 +17,22 @@
         tools:replace="android:icon"
         tools:targetApi="31">
         <activity
-            android:name=".ui.TestActivity"
+            android:name=".ui.activities.ReportDetailsActivity"
             android:exported="true" >
 
 
         </activity>
         <activity
-            android:name=".ui.activities.ReportActivity"
+            android:name=".ui.activities.SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.TestActivity"
             android:exported="true">
 
         </activity>
+        <activity
+            android:name=".ui.activities.ReportActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.activities.auth.VerifyActivity"
             android:exported="false" />
@@ -40,7 +48,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

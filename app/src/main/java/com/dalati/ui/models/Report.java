@@ -1,10 +1,11 @@
 package com.dalati.ui.models;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-public class Report {
+public class Report implements Serializable {
     String id, publisher_id, claimer_id, founder_id, category_id, type_id, date, publishing_date, place, description;
     int status, report_type;
     boolean isEnabled;
@@ -12,6 +13,7 @@ public class Report {
     SimpleDateFormat currentDateFormat = new SimpleDateFormat("dd/MM/yyy HH:mm");
     List<String> images;
     String loser_id;
+
 
     public Report() {
     }

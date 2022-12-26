@@ -17,7 +17,7 @@
         android:layout_margin="10dp"
         android:text="View Lost Items"
         android:textColor="@color/mainColor"
-        android:textSize="18dp"
+        android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,11 +26,11 @@
         android:id="@+id/btnSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
         android:background="@null"
         android:src="@drawable/ic_search_normal"
         app:layout_constraintEnd_toStartOf="@id/btnLinear"
-        app:layout_constraintStart_toEndOf="@id/tvType"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
@@ -52,17 +52,30 @@
         android:background="@null"
         android:src="@drawable/ic_element_3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
+
+    <ImageButton
+        android:id="@+id/btnFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:background="@null"
+        android:src="@drawable/ic_baseline_filter_alt_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnGrid"
+        app:tint="@color/mainColor" />
+
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/popular_recycler"
+        android:id="@+id/reports_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvType"
-        tools:listitem="@layout/report_item"
-
-        />
+        tools:listitem="@layout/report_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
