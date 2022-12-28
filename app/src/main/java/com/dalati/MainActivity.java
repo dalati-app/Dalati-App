@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        bottomNav.setItemSelected(R.id.nav_home,true);
 
         //Hello Team
         //Hi

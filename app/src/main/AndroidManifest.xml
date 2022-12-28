@@ -17,19 +17,20 @@
         tools:replace="android:icon"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activities.EditAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.ChattingActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.ReportDetailsActivity"
-            android:exported="true" >
-
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".ui.activities.SearchActivity"
             android:exported="false" />
         <activity
             android:name=".ui.TestActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".ui.activities.ReportActivity"
             android:exported="true" />
@@ -41,18 +42,20 @@
             android:exported="false" />
         <activity
             android:name=".ui.activities.auth.LoginActivity"
-            android:exported="false" />
+            android:exported="true"></activity>
         <activity
             android:name=".ui.SplashActivity"
-            android:exported="true" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+
         </activity>
     </application>
 

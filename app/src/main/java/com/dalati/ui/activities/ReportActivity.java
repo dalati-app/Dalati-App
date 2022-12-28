@@ -64,7 +64,7 @@ public class ReportActivity extends AppCompatActivity {
     String currentLang, categoryId, typeId;
     int categoryIndex, typeIndex;
     ViewPager2 adsViewPager;
-    int report_type = 0;
+    int report_type ;
 
     TextInputLayout foundLayout, dateLayout;
     TextView tvTitle;

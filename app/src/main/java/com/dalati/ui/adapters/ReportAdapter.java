@@ -37,6 +37,9 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ImageViewH
     List<Category> categoryList = new ArrayList<>();
     List<Type> typeList = new ArrayList<>();
     SQLiteDatabase db;
+    public static final int ITEM_TYPE_GRID = 1;
+    public static final int ITEM_TYPE_LIST = 0;
+    private int VIEW_TYPE = 0;
 
 
     public ReportAdapter(Context context) {
@@ -49,8 +52,20 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ImageViewH
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.report_item, parent, false);
-        return new ImageViewHolder(v);
+
+        View view = null;
+        // check here the viewType and return RecyclerView.ViewHolder based on view type
+        switch (VIEW_TYPE) {
+            case ITEM_TYPE_LIST:
+                // if VIEW_TYPE is Grid than return GridViewHolder
+                view = LayoutInflater.from(mContext).inflate(R.layout.report_item, parent, false);
+                return new ImageViewHolder(view);
+            case ITEM_TYPE_GRID:
+                // if VIEW_TYPE is Card List than return CardListViewHolder
+                view = LayoutInflater.from(mContext).inflate(R.layout.report_item_grid, parent, false);
+                return new ImageViewHolder(view);
+        }
+        return new ImageViewHolder(view);
 
     }
 
@@ -101,6 +116,10 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ImageViewH
 
     }
 
+    public void setVIEW_TYPE(int viewType) {
+        VIEW_TYPE = viewType;
+        notifyDataSetChanged();
+    }
 
     public void setReportList(List<Report> reportList) {
         this.reportList = reportList;

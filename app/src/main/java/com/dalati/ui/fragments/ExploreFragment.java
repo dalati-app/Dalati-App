@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -62,6 +63,7 @@ public class ExploreFragment extends Fragment {
 
     String currentLang, categoryId, typeId;
     int categoryIndex, typeIndex;
+    private GridLayoutManager gridLayoutManager;
 
     ReportAdapter reportAdapter;
 
@@ -132,6 +134,7 @@ public class ExploreFragment extends Fragment {
         typeList = new ArrayList<>();
         reportList = new ArrayList<>();
         reportAdapter = new ReportAdapter(getActivity());
+        gridLayoutManager = new GridLayoutManager(getActivity(), 2);
 
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
@@ -145,7 +148,27 @@ public class ExploreFragment extends Fragment {
         btnFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 filterDialog.show();
+            }
+        });
+        btnGrid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                reportAdapter.setVIEW_TYPE(1);
+                recycler_reports.setLayoutManager(gridLayoutManager);
+                recycler_reports.setAdapter(reportAdapter);
+            }
+        });
+
+        btnLinear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                reportAdapter.setVIEW_TYPE(0);
+                recycler_reports.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+                recycler_reports.setAdapter(reportAdapter);
             }
         });
     }
@@ -165,8 +188,8 @@ public class ExploreFragment extends Fragment {
             public void onClick(View view) {
                 List<Report> tempReportList = new ArrayList<>();
                 for (Report report : reportList) {
-                    System.out.println("Dalati cId: "+report.getCategory_id());
-                    System.out.println("Dalati selected: "+categoryId);
+                    System.out.println("Dalati cId: " + report.getCategory_id());
+                    System.out.println("Dalati selected: " + categoryId);
                     if (categoryId.equals(report.getCategory_id())) {
                         tempReportList.add(report);
                     }
@@ -246,6 +269,7 @@ public class ExploreFragment extends Fragment {
 
 
     }
+
     private void getCategories() {
 
         databaseReference.child("Types").addValueEventListener(new ValueEventListener() {
@@ -258,7 +282,7 @@ public class ExploreFragment extends Fragment {
                             Type type = postSnapshot2.getValue(Type.class);
                             typeList.add(type);
                         }
-                      //  reportAdapter.setTypeList(typeList);
+                        //  reportAdapter.setTypeList(typeList);
 
                     }
 
@@ -278,8 +302,8 @@ public class ExploreFragment extends Fragment {
                     Category category = postSnapshot.getValue(Category.class);
                     categoryList.add(category);
                 }
-               // reportAdapter.setCategoryList(categoryList);
-               // saveObjectToSharedPreference(categoryList);
+                // reportAdapter.setCategoryList(categoryList);
+                // saveObjectToSharedPreference(categoryList);
 
 
                 currentLang = Locale.getDefault().getLanguage();
@@ -315,7 +339,11 @@ public class ExploreFragment extends Fragment {
                     reportList.clear();
                     for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                         Report report = postSnapshot.getValue(Report.class);
-                        reportList.add(report);
+
+                        //TODO Change the view
+                        if (report.getReport_type() == 1) {
+                            reportList.add(report);
+                        }
                     }
                     reportAdapter.setReportList(reportList);
                     recycler_reports.setAdapter(reportAdapter);

@@ -9,7 +9,7 @@
     <!-- TODO: Update blank fragment layout -->
 
     <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/profileImg"
+        android:id="@+id/profileImg"
         android:layout_width="@dimen/_70sdp"
         android:layout_height="@dimen/_70sdp"
         android:layout_marginTop="30dp"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:enabled="false"
+            android:enabled="true"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:enabled="false"
+            android:enabled="true"
 
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
@@ -102,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:enabled="false"
+            android:enabled="true"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
@@ -132,23 +132,15 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/btnEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edit"
-            android:layout_gravity="center"
-            android:textColor="@color/secondary_text"
-            android:textSize="@dimen/_12sdp"/>
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnSignOut"
+        android:id="@+id/btnEdit"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_margin="20dp"
         android:background="@drawable/bg_button"
-        android:text="Sign Out"
+        android:text="Edit"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="18sp"

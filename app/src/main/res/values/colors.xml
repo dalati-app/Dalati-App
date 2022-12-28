@@ -21,6 +21,6 @@
 
     <color name="secondary_text">#757575</color>
     <color name="error">#B00020</color>
-    <color name="received_massage_background">#df9966</color>
+    <color name="received_massage_background">#EDEDED</color>
     <color name="onlineState">#21ada6</color>
 </resources>

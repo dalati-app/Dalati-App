@@ -1,9 +1,13 @@
 package com.dalati.ui.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +22,8 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class ReportDetailsActivity extends AppCompatActivity {
     ImageSlider imageSlider;
     List<SlideModel> slideModelList = new ArrayList<>();
@@ -25,6 +31,8 @@ public class ReportDetailsActivity extends AppCompatActivity {
     String category, type, description, date, place;
     Report report;
     SQLiteDatabase db;
+    ImageButton btnChat;
+    Button btnClaim;
 
 
     @Override
@@ -44,7 +52,36 @@ public class ReportDetailsActivity extends AppCompatActivity {
         tvDescription = findViewById(R.id.tvDescription);
         tvDate = findViewById(R.id.tvDate);
         tvPlace = findViewById(R.id.tvPlace);
+        btnChat = findViewById(R.id.btnChat);
         imageSlider = findViewById(R.id.image_slider);
+        btnClaim = findViewById(R.id.btnClaim);
+
+        btnChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ChattingActivity.class));
+            }
+        });
+
+        btnClaim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new SweetAlertDialog(ReportDetailsActivity.this, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Warning")
+                        .setContentText("Please check photos and read description carefully before claiming, wrong claims may attract penalties.")
+                        .setConfirmText("Ok! Claim")
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.setTitleText("Request Sent")
+                                        .setContentText("You can now chat with admin to check")
+                                        .setConfirmText("OK")
+                                        .setConfirmClickListener(null)
+                                        .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                            }
+                        }).show();
+            }
+        });
 
     }
 

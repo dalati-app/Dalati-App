@@ -76,6 +76,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         cvLost = view.findViewById(R.id.cvLost);
         cvFound = view.findViewById(R.id.cvFound);
         cvLost.setOnClickListener(this);
+        cvFound.setOnClickListener(this);
 
 
     }
