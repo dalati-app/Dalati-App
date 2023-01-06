@@ -115,7 +115,8 @@ public class AccountFragment extends Fragment {
                 FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
                 firebaseAuth.signOut();
                 startActivity(new Intent(getContext(), LoginActivity.class));
-            getActivity().finish();}
+                getActivity().finish();
+            }
         });
     }
 

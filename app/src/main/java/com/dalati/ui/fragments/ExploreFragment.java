@@ -61,11 +61,11 @@ public class ExploreFragment extends Fragment {
     List<Report> reportList;
     RecyclerView recycler_reports;
 
+    ReportAdapter reportAdapter;
     String currentLang, categoryId, typeId;
     int categoryIndex, typeIndex;
     private GridLayoutManager gridLayoutManager;
 
-    ReportAdapter reportAdapter;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -269,6 +269,7 @@ public class ExploreFragment extends Fragment {
 
 
     }
+
 
     private void getCategories() {
 

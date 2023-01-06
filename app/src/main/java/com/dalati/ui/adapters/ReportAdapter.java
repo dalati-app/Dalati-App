@@ -26,6 +26,7 @@ import com.dalati.ui.models.Type;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ImageViewHolder> {
@@ -40,6 +41,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ImageViewH
     public static final int ITEM_TYPE_GRID = 1;
     public static final int ITEM_TYPE_LIST = 0;
     private int VIEW_TYPE = 0;
+    List<Report> tempReportList;
 
 
     public ReportAdapter(Context context) {
@@ -123,8 +125,42 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ImageViewH
 
     public void setReportList(List<Report> reportList) {
         this.reportList = reportList;
+        tempReportList = new ArrayList();
+        tempReportList.addAll(this.reportList);
         notifyDataSetChanged();
     }
+
+    public void filter(String charText) {
+
+        charText = charText.toLowerCase(Locale.getDefault());
+        charText = charText.replace("أ", "ا");
+        charText = charText.replace("إ", "ا");
+        charText = charText.replace("آ", "ا");
+        charText = charText.replace("ى", "ي");
+        charText = charText.replace("ئ", "ي");
+        charText = charText.replace("ؤ", "و");
+        charText = charText.replace("ة", "ه");
+
+
+        reportList.clear();
+
+        if (charText.length() == 0) {
+            reportList.addAll(tempReportList);
+
+        } else {
+            System.out.println("------------------");
+            System.out.println("You locks for: " + charText);
+            for (Report obj : tempReportList) {
+                if (obj.getDescription().toLowerCase().contains(charText)
+                        || obj.getPlace().contains(charText)
+                        || obj.getDescription().contains(charText)) {
+                    reportList.add(obj);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
 
     public void setCategoryList(List<Category> categoryList) {
         this.categoryList = categoryList;

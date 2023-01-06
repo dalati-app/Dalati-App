@@ -8,13 +8,17 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dalati.R;
@@ -23,6 +27,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -53,6 +60,8 @@ public class EditAccountActivity extends AppCompatActivity {
     String name, desc, category, price, fileLink;
     String library_id, book_id, type;
     private Uri filePath;
+    String oldEmail, newEmail;
+    AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,20 +98,87 @@ public class EditAccountActivity extends AppCompatActivity {
 
     }
 
+    public void initDialog(String oldEmail, String newEmail) {
+        Button btnConfirm, btnCancel;
+        EditText etPassword;
+
+
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(EditAccountActivity.this, R.style.BottomSheetDialog);
+        View bottomSheetView = LayoutInflater.from(EditAccountActivity.this)
+                .inflate(R.layout.confirm_password_dialog,
+                        null);
+
+        btnConfirm = bottomSheetView.findViewById(R.id.btnConfirm);
+        btnCancel = bottomSheetView.findViewById(R.id.btn_cancel);
+        etPassword = bottomSheetView.findViewById(R.id.etPassword);
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View view) {
+                                              String password = etPassword.getText().toString();
+                                              FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                              // Get auth credentials from the user for re-authentication
+                                              AuthCredential credential = EmailAuthProvider
+                                                      .getCredential(oldEmail, password); // Current Login Credentials \\
+                                              // Prompt the user to re-provide their sign-in credentials
+                                              assert user != null;
+                                              user.reauthenticate(credential)
+                                                      .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                          @Override
+                                                          public void onComplete(@NonNull Task<Void> task) {
+                                                              Log.d("TAG", "User re-authenticated.");
+                                                              //Now change your email address \\
+                                                              //----------------Code for Changing Email Address----------\\
+                                                              FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                                              user.updateEmail(newEmail)
+                                                                      .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                          @Override
+                                                                          public void onComplete(@NonNull Task<Void> task) {
+                                                                              if (task.isSuccessful()) {
+
+                                                                                  user.sendEmailVerification();
+
+                                                                                  Log.d("TAG", "User email address updated.");
+                                                                              }
+                                                                          }
+                                                                      });
+                                                              //----------------------------------------------------------\\
+                                                          }
+                                                      });
+                                          }
+                                      }
+        );
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.cancel();
+            }
+        });
+
+        bottomSheetDialog.show();
+
+
+    }
+
     private void update() {
-        if (!user.getEmail().equals(etEmail.getText().toString())) {
-            FirebaseUser user1 = FirebaseAuth.getInstance().getCurrentUser();
-            user1.updateEmail(etEmail.getText().toString())
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                user.setEmail(etEmail.getText().toString());
-                            }
-                        }
-                    });
+        newEmail = etEmail.getText().toString();
+        if (!oldEmail.equals(newEmail)) {
+
+            initDialog(oldEmail, newEmail);
+            user.setEmail(newEmail);
+            //TODO optimize
+            saveUpdated(user);
+        } else {
+            saveUpdated(user);
         }
 
+    }
+
+    private void saveUpdated(User user) {
         user.setName(etName.getText().toString());
         user.setPhone(etPhone.getText().toString());
         databaseReference2.child("End Users").child(user.getId()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -110,11 +186,9 @@ public class EditAccountActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     saveObjectToSharedPreference(user);
-                    finish();
                 }
             }
         });
-
 
     }
 
@@ -138,6 +212,7 @@ public class EditAccountActivity extends AppCompatActivity {
             etName.setText(user.getName());
             etEmail.setText(user.getEmail());
             etPhone.setText(user.getPhone());
+            oldEmail = user.getEmail();
         } else {
             Toast.makeText(this, "User is null", Toast.LENGTH_SHORT).show();
         }

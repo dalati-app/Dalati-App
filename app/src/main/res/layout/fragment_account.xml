@@ -9,7 +9,7 @@
     <!-- TODO: Update blank fragment layout -->
 
     <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/profileImg"
+        android:id="@+id/profileImg"
         android:layout_width="@dimen/_70sdp"
         android:layout_height="@dimen/_70sdp"
         android:layout_marginTop="30dp"
@@ -86,7 +86,7 @@
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Email"
+                android:hint="Email"
                 android:imeOptions="actionNext"
                 android:singleLine="true"
                 android:textColorHint="@color/mainColor"
@@ -107,8 +107,6 @@
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
             app:boxCornerRadiusTopStart="12dp"
-            app:counterEnabled="true"
-            app:counterMaxLength="9"
             app:errorEnabled="true"
             app:errorTextColor="#D11212"
 
@@ -122,11 +120,9 @@
                 android:id="@+id/et_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Phone"
+                android:hint="Phone"
                 android:imeOptions="actionGo"
                 android:inputType="number"
-                android:maxLength="9"
-
                 android:singleLine="true"
                 android:textColorHint="@color/mainColor" />
 
@@ -136,10 +132,10 @@
             android:id="@+id/btnEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit"
             android:layout_gravity="center"
+            android:text="Edit"
             android:textColor="@color/secondary_text"
-            android:textSize="@dimen/_12sdp"/>
+            android:textSize="@dimen/_12sdp" />
     </LinearLayout>
 
     <Button
