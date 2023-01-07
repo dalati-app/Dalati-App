@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/g1"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_cat"
+            android:icon="@drawable/ic_element_3"
+            android:title="Test" />
+
+
+    </group>
+
+    <group
+        android:id="@+id/g2"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_calendar"
+            android:title="Share" />
+
+
+    </group>
+
+    <group
+        android:id="@+id/g3"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/log_out"
+            android:icon="@drawable/ic_element_3"
+            android:title="Log out" />
+
+
+    </group>
+</menu>

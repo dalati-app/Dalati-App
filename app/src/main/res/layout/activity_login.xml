@@ -111,11 +111,12 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            android:id="@+id/tvReset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="5dp"
-            android:text="@string/don_t_have_an_account"
+            android:text="Forget Password?"
             android:textColor="#5D5F61"
             android:textSize="12sp" />
 
@@ -123,7 +124,6 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
 
             <Button
                 android:id="@+id/btnSignIn"
@@ -136,7 +136,6 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
-
 
         </FrameLayout>
 

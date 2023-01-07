@@ -4,10 +4,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -17,6 +22,7 @@ import com.dalati.ui.fragments.ExploreFragment;
 import com.dalati.ui.fragments.HomeFragment;
 import com.dalati.ui.models.Category;
 import com.dalati.ui.models.Type;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,23 +33,34 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     ChipNavigationBar bottomNav;
     FragmentManager fragmentManager;
     DatabaseReference databaseReference;
     List<Category> categoryList;
     List<Type> typeList;
     SQLiteDatabase db;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    ImageView menuIcon;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         bottomNav = findViewById(R.id.nav_bottom);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
+        menuIcon = findViewById(R.id.menu_icon);
+
+
         table_Creation();
         table_Creation2();
         saveToLocalDB();
+        navigationDrawer();
 
 
         bottomNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
@@ -81,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        bottomNav.setItemSelected(R.id.nav_home,true);
+        bottomNav.setItemSelected(R.id.nav_home, true);
 
         //Hello Team
         //Hi
@@ -148,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     public void table_Creation2() {
         db = openOrCreateDatabase("local", Context.MODE_PRIVATE, null);
         try {
@@ -203,5 +219,35 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+    private void navigationDrawer() {
+        navigationView.bringToFront();
+        navigationView.setNavigationItemSelectedListener(this);
+        // navigationView.setCheckedItem(R.id.nav_home2);
+
+        menuIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                } else {
+                    drawerLayout.openDrawer(GravityCompat.START);
+
+                }
+            }
+        });
+
+
+    }
+
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+
+
+        }
+        return true;
+    }
+
 
 }

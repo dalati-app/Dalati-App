@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dalati.MainActivity;
@@ -30,13 +32,15 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 public class LoginActivity extends AppCompatActivity {
-    TextView tvSignUp;
+    TextView tvSignUp, tvReset;
     String email, password;
     Button loginBtn;
     EditText et_email, et_password;
     FirebaseAuth auth;
     DatabaseReference reference;
     FirebaseUser firebaseUser;
+    AlertDialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void defineViews() {
         tvSignUp = findViewById(R.id.tv_signUp);
+        tvReset = findViewById(R.id.tvReset);
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child("Library");
         auth = FirebaseAuth.getInstance();
 
@@ -59,6 +64,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
+            }
+        });
+
+        tvReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                initDialog();
             }
         });
 
@@ -143,6 +155,57 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             return true;
         }
+    }
+
+    public void initDialog() {
+        Button btn_reset, btn_cancel;
+        TextView tvMessage;
+        EditText et_email;
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.DialogTheme);
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.reset_password_dialog, null);
+        et_email = view.findViewById(R.id.et_email);
+        btn_reset = view.findViewById(R.id.btn_reset);
+        btn_cancel = view.findViewById(R.id.btn_cancel);
+        tvMessage = view.findViewById(R.id.tvResetMessage);
+
+        btn_reset.setOnClickListener(new View.OnClickListener() {
+                                         @Override
+                                         public void onClick(View view) {
+                                             FirebaseAuth.getInstance().sendPasswordResetEmail(et_email.getText().toString())
+                                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                         @Override
+                                                         public void onComplete(@NonNull Task<Void> task) {
+                                                             if (task.isSuccessful()) {
+                                                                 Toast.makeText(LoginActivity.this, "Reset Email Sent", Toast.LENGTH_SHORT).show();
+                                                                 btn_reset.setVisibility(View.GONE);
+                                                                 et_email.setVisibility(View.GONE);
+                                                                 tvMessage.setText("We Sent you an email for resetting password");
+                                                             }
+                                                         }
+                                                     }).addOnFailureListener(new OnFailureListener() {
+                                                         @Override
+                                                         public void onFailure(@NonNull Exception e) {
+                                                             Toast.makeText(LoginActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                                         }
+                                                     });
+                                         }
+                                     }
+        );
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
+            }
+        });
+
+        builder.setView(view);
+        dialog = builder.create();
+        dialog.show();
+
     }
 
 
