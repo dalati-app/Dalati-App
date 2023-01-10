@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends BaseActivity {
     SearchView searchView;
     List<Report> reportList;
     RecyclerView recycler_reports;
@@ -41,7 +41,6 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
         defineViews();
         getCategories();
 
@@ -75,6 +74,11 @@ public class SearchActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    @Override
+    public int defineLayout() {
+        return R.layout.activity_search;
     }
 
     private void defineViews() {

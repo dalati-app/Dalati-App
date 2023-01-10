@@ -68,7 +68,7 @@
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Email"
+                android:hint="@string/enter_email"
                 android:imeOptions="actionNext"
                 android:singleLine="true"
 
@@ -101,7 +101,7 @@
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter password"
+                android:hint="@string/enter_password"
                 android:imeOptions="actionGo"
                 android:inputType="textPassword"
 
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="5dp"
-            android:text="Forget Password?"
+            android:text="@string/forget_password"
             android:textColor="#5D5F61"
             android:textSize="12sp" />
 
@@ -132,7 +132,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="20dp"
                 android:background="@drawable/bg_button"
-                android:text="Sign in"
+                android:text="@string/sign_in"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="18sp" />

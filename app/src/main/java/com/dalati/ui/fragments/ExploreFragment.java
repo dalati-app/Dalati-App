@@ -208,7 +208,7 @@ public class ExploreFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 categoryIndex = i;
                 categoryId = categoryList.get(i).getId();
-                drop_menu_type.setText("Choose Type");
+                drop_menu_type.setText(R.string.choose_Type);
                 databaseReference.child("Types").child(categoryId).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

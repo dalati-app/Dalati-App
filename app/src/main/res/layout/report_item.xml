@@ -37,7 +37,7 @@
                 android:backgroundTint="@color/mainColor"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="Category"
+                android:text="@string/category"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="12dp"
@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Phone"
+                android:text="@string/phone"
                 android:textColor="@color/mainColor"
                 android:textSize="18dp"
                 android:textStyle="bold" />

@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
 
         android:layout_margin="10dp"
-        android:text="View Lost Items"
+        android:text="@string/view_lost_items"
         android:textColor="@color/mainColor"
         android:textSize="24dp"
         android:textStyle="bold"
@@ -73,7 +73,7 @@
         android:id="@+id/reports_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvType"
         tools:listitem="@layout/report_item" />

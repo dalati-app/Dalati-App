@@ -85,7 +85,7 @@
         android:autofillHints="no"
         android:background="@drawable/background_chat_input"
         android:backgroundTint="@color/received_massage_background"
-        android:hint="Message"
+        android:hint="@string/message"
         android:imeOptions="actionDone"
         android:inputType="text"
         android:paddingStart="@dimen/_16sdp"

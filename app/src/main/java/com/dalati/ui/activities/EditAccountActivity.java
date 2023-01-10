@@ -43,7 +43,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.UUID;
 
-public class EditAccountActivity extends AppCompatActivity {
+public class EditAccountActivity extends BaseActivity {
     EditText etName, etPhone, etEmail;
     Button btnEdit;
     User user;
@@ -66,9 +66,14 @@ public class EditAccountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_account);
+
         defineViews();
         getUser();
+    }
+
+    @Override
+    public int defineLayout() {
+        return R.layout.activity_edit_account   ;
     }
 
     public void defineViews() {
@@ -214,7 +219,7 @@ public class EditAccountActivity extends AppCompatActivity {
             etPhone.setText(user.getPhone());
             oldEmail = user.getEmail();
         } else {
-            Toast.makeText(this, "User is null", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.user_is_null, Toast.LENGTH_SHORT).show();
         }
     }
 

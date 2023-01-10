@@ -6,7 +6,7 @@
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_homeic_home"
         android:iconTint="@color/white"
-        android:title="Home"
+        android:title="@string/home"
         app:cnb_backgroundColor="@color/white"
         app:cnb_iconColor="@color/black"
         app:cnb_textColor="@color/black" />
@@ -15,7 +15,7 @@
     <item
         android:id="@+id/nav_explore"
         android:icon="@drawable/ic_discover"
-        android:title="Explore"
+        android:title="@string/explore"
         app:cnb_backgroundColor="@color/white"
         app:cnb_iconColor="@color/black"
         app:cnb_textColor="@color/black" />
@@ -23,7 +23,7 @@
     <item
         android:id="@+id/nav_chat"
         android:icon="@drawable/ic_sms"
-        android:title="Chat"
+        android:title="@string/chat"
         app:cnb_backgroundColor="@color/white"
         app:cnb_iconColor="@color/black"
         app:cnb_textColor="@color/black" />
@@ -31,7 +31,7 @@
     <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_profile"
-        android:title="Account"
+        android:title="@string/account"
         app:cnb_backgroundColor="@color/white"
         app:cnb_iconColor="@color/black"
         app:cnb_textColor="@color/black" />

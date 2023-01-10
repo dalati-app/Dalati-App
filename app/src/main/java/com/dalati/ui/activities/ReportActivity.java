@@ -46,7 +46,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class ReportActivity extends AppCompatActivity {
+public class ReportActivity extends BaseActivity {
     EditText etDate, etPlace, etDescription;
     Button btnConfirm;
     int PICK_IMAGE_MULTIPLE = 1;
@@ -82,9 +82,13 @@ public class ReportActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report);
         defineViews();
         getCategories();
+    }
+
+    @Override
+    public int defineLayout() {
+        return R.layout.activity_report;
     }
 
     private void defineViews() {
@@ -103,7 +107,7 @@ public class ReportActivity extends AppCompatActivity {
         if (report_type == 2) {
             dateLayout.setHint("Lost Since");
             foundLayout.setHint("Lost Location");
-            tvTitle.setText("Report Lost Item");
+            tvTitle.setText(R.string.report_lost);
         }
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -327,7 +331,7 @@ public class ReportActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 categoryIndex = i;
                 categoryId = categoryList.get(i).getId();
-                drop_menu_type.setText("Choose Type");
+                drop_menu_type.setText(R.string.choose_Type);
                 databaseReference.child("Types").child(categoryId).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

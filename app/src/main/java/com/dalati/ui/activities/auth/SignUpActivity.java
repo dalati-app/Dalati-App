@@ -1,5 +1,7 @@
 package com.dalati.ui.activities.auth;
 
+import  com.dalati.R.string;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dalati.R;
+import com.dalati.ui.activities.BaseActivity;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -36,7 +39,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends BaseActivity {
 
     TextView tvSignIn;
     Button btnSignUp;
@@ -55,8 +58,12 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+
         defineViews();
+    }
+    @Override
+    public int defineLayout() {
+        return R.layout.activity_sign_up;
     }
 
     public void defineViews() {
@@ -131,7 +138,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
         if (name.isEmpty()) {
-            etName.setError("Name required");
+            etName.setError(getString(R.string.name_required));
             etName.requestFocus();
             flag = true;
 
@@ -139,7 +146,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         if (email.isEmpty()) {
-            etEmail.setError("Email required");
+            etEmail.setError(getString(R.string.email_is_required));
             etEmail.requestFocus();
             flag = true;
 
@@ -148,21 +155,21 @@ public class SignUpActivity extends AppCompatActivity {
 
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            etEmail.setError("Need Email");
+            etEmail.setError(getString(R.string.need_email));
             etEmail.requestFocus();
             flag = true;
 
         }
 
         if (password.isEmpty()) {
-            etPassword.setError("Password Required");
+            etPassword.setError(getString(R.string.pass_));
             etPassword.requestFocus();
             flag = true;
 
         }
 
         if (phone.length() < 9) {
-            etPhone.setError("Phone Required");
+            etPhone.setError(getString(R.string.phone_required));
             etPhone.requestFocus();
             flag = true;
 
@@ -170,7 +177,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
         if (!isValidPassword(password)) {
-            etPassword.setError("Your password must contain:\n lower and upper cases with numbers ");
+            etPassword.setError(getString(R.string.pass1));
             flag = true;
         }
 
@@ -193,12 +200,12 @@ public class SignUpActivity extends AppCompatActivity {
                         intent.putExtra("age", age);
                         intent.putExtra("gender", gender);
                         intent.putExtra("verificationId", otpCode);
-                        Toast.makeText(SignUpActivity.this, "OTP Code Sent", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, R.string.otp, Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                     } else {
                         progressbar.setVisibility(View.INVISIBLE);
                         btnSignUp.setVisibility(View.VISIBLE);
-                        Toast.makeText(SignUpActivity.this, "Try again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, R.string.try_again, Toast.LENGTH_SHORT).show();
                     }
                 }
             }, 4000);

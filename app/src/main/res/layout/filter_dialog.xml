@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:text="Filter"
+            android:text="@string/filter"
             android:textColor="@color/mainColor"
             android:textSize="@dimen/xxlarge_txt_size" />
 
@@ -36,7 +36,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:hint="Category"
+            android:hint="@string/category"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
@@ -59,7 +59,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:hint="Type"
+            android:hint="@string/type"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
@@ -84,7 +84,7 @@
             android:layout_margin="20dp"
             android:background="@drawable/bg_button"
             android:padding="10dp"
-            android:text="Go"
+            android:text="@string/go"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textStyle="bold" />

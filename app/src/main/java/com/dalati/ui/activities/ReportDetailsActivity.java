@@ -24,7 +24,7 @@ import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class ReportDetailsActivity extends AppCompatActivity {
+public class ReportDetailsActivity extends BaseActivity {
     ImageSlider imageSlider;
     List<SlideModel> slideModelList = new ArrayList<>();
     TextView tvCategory, tvType, tvDescription, tvDate, tvPlace;
@@ -38,12 +38,16 @@ public class ReportDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report_details);
         defineViews();
         getReportData();
         getCategory();
         getType();
 
+    }
+
+    @Override
+    public int defineLayout() {
+        return R.layout.activity_report_details;
     }
 
     private void defineViews() {

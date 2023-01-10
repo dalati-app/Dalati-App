@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class ChattingActivity extends AppCompatActivity {
+public class ChattingActivity extends BaseActivity {
     List<ChatMessage> chatMessageList;
     MessageAdapter messageAdapter;
     RecyclerView chat_recyclerView;
@@ -44,7 +44,6 @@ public class ChattingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chatting);
         chat_recyclerView = findViewById(R.id.chatRecyclerView);
         etMessage = findViewById(R.id.inputMessage);
         btnSend = findViewById(R.id.btnSend);
@@ -119,5 +118,10 @@ public class ChattingActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public int defineLayout() {
+        return R.layout.activity_chatting;
     }
 }

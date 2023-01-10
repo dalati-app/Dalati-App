@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.dalati.MainActivity;
 import com.dalati.R;
+import com.dalati.R.string;
+import com.dalati.ui.activities.BaseActivity;
 import com.dalati.ui.models.User;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,7 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 
-public class VerifyActivity extends AppCompatActivity {
+public class VerifyActivity extends BaseActivity {
 
     EditText inputCode1, inputCode2, inputCode3, inputCode4;
     Button sign;
@@ -42,11 +44,14 @@ public class VerifyActivity extends AppCompatActivity {
     String myCode, verificationId;
     String name, password, email, phone, token = "test", id, age, gender;
 
-
+    @Override
+    public int defineLayout() {
+        return R.layout.activity_verify;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_verify);
+
         mAuth = FirebaseAuth.getInstance();
         defineViews();
         fetchAccountData();
@@ -118,7 +123,7 @@ public class VerifyActivity extends AppCompatActivity {
 
                                     } else {
                                         //display some message here
-                                        Toast.makeText(getApplicationContext(), "Registration Error", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), R.string.RegError, Toast.LENGTH_LONG).show();
                                     }
 
                                     progressBar.setVisibility(View.INVISIBLE);
@@ -128,7 +133,7 @@ public class VerifyActivity extends AppCompatActivity {
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getApplicationContext(), "Registration Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), string.RegError + e.getMessage(), Toast.LENGTH_LONG).show();
 
                                 }
                             });
@@ -136,7 +141,7 @@ public class VerifyActivity extends AppCompatActivity {
                 } else {
                     progressBar.setVisibility(View.INVISIBLE);
                     bt_verify.setVisibility(View.VISIBLE);
-                    Toast.makeText(VerifyActivity.this, "Invalid Code", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VerifyActivity.this, string.invalid_Code, Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -180,7 +185,7 @@ public class VerifyActivity extends AppCompatActivity {
                                 // The verification code entered was invalid
                                 progressBar.setVisibility(View.INVISIBLE);
                                 bt_verify.setVisibility(View.VISIBLE);
-                                Toast.makeText(getApplicationContext(), "Invalid Code", Toast.LENGTH_LONG);
+                                Toast.makeText(getApplicationContext(), string.invalid_Code, Toast.LENGTH_LONG);
 
 
                             }
@@ -234,7 +239,7 @@ public class VerifyActivity extends AppCompatActivity {
                 if (!s.toString().trim().isEmpty()) {
                     inputCode2.requestFocus();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Enter Mobile", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), string.enter_phone , Toast.LENGTH_LONG).show();
                 }
             }
 

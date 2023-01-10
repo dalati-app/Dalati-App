@@ -11,12 +11,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dalati.MainActivity;
 import com.dalati.R;
+import com.dalati.R.string;
+import com.dalati.ui.activities.BaseActivity;
 import com.dalati.ui.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,7 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     TextView tvSignUp, tvReset;
     String email, password;
     Button loginBtn;
@@ -45,9 +48,13 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
         defineViews();
 
+    }
+
+    @Override
+    public int defineLayout() {
+        return R.layout.activity_login;
     }
 
     public void defineViews() {
@@ -178,10 +185,10 @@ public class LoginActivity extends AppCompatActivity {
                                                          @Override
                                                          public void onComplete(@NonNull Task<Void> task) {
                                                              if (task.isSuccessful()) {
-                                                                 Toast.makeText(LoginActivity.this, "Reset Email Sent", Toast.LENGTH_SHORT).show();
+                                                                 Toast.makeText(LoginActivity.this, R.string.rest_email_sent, Toast.LENGTH_SHORT).show();
                                                                  btn_reset.setVisibility(View.GONE);
                                                                  et_email.setVisibility(View.GONE);
-                                                                 tvMessage.setText("We Sent you an email for resetting password");
+                                                                 tvMessage.setText(R.string.sent_email);
                                                              }
                                                          }
                                                      }).addOnFailureListener(new OnFailureListener() {

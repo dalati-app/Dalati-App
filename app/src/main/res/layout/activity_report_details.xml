@@ -36,7 +36,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Item Description"
+                android:text="@string/item_description"
                 android:textColor="@color/mainColor"
                 android:textSize="23sp"
                 android:textStyle="bold" />
@@ -70,7 +70,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Category:"
+                    android:text="@string/category_"
                     android:textColor="@color/mainColor"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -81,7 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:text="Electronic"
+                    android:text="@string/electronic"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -98,7 +98,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Type:"
+                    android:text="@string/type_"
                     android:textColor="@color/mainColor"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -108,7 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:text="Phone"
+                    android:text="@string/phone"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -129,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:padding="5dp"
-                    android:text="Description"
+                    android:text="@string/description"
                     android:textColor="@color/mainColor"
                     android:textSize="18dp"
                     android:textStyle="bold" />
@@ -157,7 +157,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Place"
+                    android:text="@string/place"
                     android:textColor="@color/mainColor"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -168,7 +168,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:text="Electronic"
+                    android:text="@string/electronic"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -185,7 +185,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date"
+                    android:text="@string/date"
                     android:textColor="@color/mainColor"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -229,7 +229,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/bg_button"
-        android:text="Claim"
+        android:text="@string/claim"
         android:textAllCaps="false"
         android:textSize="15sp"
         android:textStyle="bold"
