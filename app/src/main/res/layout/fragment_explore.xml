@@ -13,13 +13,13 @@
         android:id="@+id/tvType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_margin="10dp"
-        android:text="@string/view_lost_items"
+        android:text="@string/found_items"
         android:textColor="@color/mainColor"
-        android:textSize="24dp"
+        android:textSize="@dimen/_15sdp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginTop="10dp"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvType"
+        app:layout_constraintTop_toBottomOf="@id/btnFilter"
         tools:listitem="@layout/report_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

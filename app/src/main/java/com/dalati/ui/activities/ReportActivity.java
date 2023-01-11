@@ -18,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
@@ -26,6 +25,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.dalati.R;
 import com.dalati.ui.adapters.ModernImageSlider;
+import com.dalati.ui.base.BaseActivity;
 import com.dalati.ui.models.Category;
 import com.dalati.ui.models.Report;
 import com.dalati.ui.models.Type;

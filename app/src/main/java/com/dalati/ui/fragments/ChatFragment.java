@@ -109,7 +109,7 @@ public class ChatFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         userId = firebaseAuth.getCurrentUser().getUid();
         //   anotherId = getIntent().getStringExtra("anotherId");
-        textName.setText(" Officer");
+        textName.setText(R.string.offices);
 
 
         btnBack.setOnClickListener(new View.OnClickListener() {

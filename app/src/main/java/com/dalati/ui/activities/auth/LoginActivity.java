@@ -14,12 +14,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.dalati.MainActivity;
 import com.dalati.R;
-import com.dalati.R.string;
-import com.dalati.ui.activities.BaseActivity;
+import com.dalati.ui.base.BaseActivity;
 import com.dalati.ui.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;

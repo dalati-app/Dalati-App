@@ -17,6 +17,8 @@
     <string name="name_required">Name is required</string>
     <string name="full_name">Full Name</string>
     <string name="enter_email">Enter Email</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <string name="enter_phone">Enter Phone</string>
     <string name="edit">Edit</string>
     <string name="report_found_item">Report Found Item</string>
@@ -29,11 +31,12 @@
     <string name="item_description">Item Description</string>
     <string name="electronic">Electronic</string>
     <string name="type_">type :</string>
-    <string name="category_">category :</string>
     <string name="phone">Phone</string>
     <string name="place">Place</string>
     <string name="claim">Claim</string>
     <string name="age">Age</string>
+    <string name="ask_lanugage">Change Language?</string>
+
     <string name="gender">Gender</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="please_enter_password_to_change_your_email">Please Enter password to change your email</string>
@@ -70,6 +73,9 @@
     <string name="RegError">Registration Error</string>
     <string name="invalid_Code">Invalid Code</string>
     <string name="otp">OTP code sent</string>
+    <string name="language">Language</string>
+    <string name="found_items">Found Items</string>
+    <string name="offices">Officer</string>
 
 
 </resources>

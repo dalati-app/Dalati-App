@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.dalati.R;
 import com.dalati.ui.adapters.ReportAdapter;
+import com.dalati.ui.base.BaseActivity;
 import com.dalati.ui.models.Category;
 import com.dalati.ui.models.Report;
 import com.dalati.ui.models.Type;

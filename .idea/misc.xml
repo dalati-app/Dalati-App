@@ -13,6 +13,7 @@
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/bg_nav.xml" value="0.346" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/ic_baseline_add_comment_24.xml" value="0.204" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/ic_baseline_explore_24.xml" value="0.346" />
+        <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/ic_baseline_language_24.xml" value="0.313" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/ic_lock.xml" value="0.308" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/ic_person.xml" value="0.308" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/login_bk.xml" value="0.308" />
@@ -49,6 +50,7 @@
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/fragment_item_list.xml" value="0.17135416666666667" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/item_container_reciver_message.xml" value="0.2" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/item_container_sent_message.xml" value="0.2" />
+        <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/language_dialog.xml" value="0.10833333333333334" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/nav_header_main.xml" value="0.2" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/report_item.xml" value="0.3625" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/report_item_grid.xml" value="0.3569230769230769" />
@@ -58,6 +60,7 @@
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/menu/item_menu.xml" value="0.33" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/menu/menu_navigation_drawer.xml" value="0.2" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/menu/navigation_menu.xml" value="0.3625" />
+        <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/menu/popup_menu.xml" value="0.10833333333333334" />
       </map>
     </option>
   </component>

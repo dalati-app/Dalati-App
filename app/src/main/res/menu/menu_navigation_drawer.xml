@@ -9,6 +9,11 @@
             android:icon="@drawable/ic_element_3"
             android:title="@string/test" />
 
+        <item
+            android:id="@+id/nav_language"
+            android:icon="@drawable/ic_baseline_language_24"
+            android:title="@string/language" />
+
 
     </group>
 

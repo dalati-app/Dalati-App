@@ -1,7 +1,5 @@
 package com.dalati.ui.activities.auth;
 
-import  com.dalati.R.string;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,10 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.dalati.R;
-import com.dalati.ui.activities.BaseActivity;
+import com.dalati.ui.base.BaseActivity;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

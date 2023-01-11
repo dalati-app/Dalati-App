@@ -11,9 +11,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.dalati.R;
+import com.dalati.ui.base.BaseActivity;
 import com.dalati.ui.models.Report;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
@@ -21,6 +20,7 @@ import com.denzcoskun.imageslider.models.SlideModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -33,6 +33,7 @@ public class ReportDetailsActivity extends BaseActivity {
     SQLiteDatabase db;
     ImageButton btnChat;
     Button btnClaim;
+    String currentLanguage = Locale.getDefault().getLanguage();
 
 
     @Override
@@ -97,10 +98,12 @@ public class ReportDetailsActivity extends BaseActivity {
             Cursor c = db.rawQuery("select * from categories", null);
 
             while (c.moveToNext()) {
-                System.out.println("Moha: " + c.getString(0));
 
                 if (c.getString(0).equals(report.getCategory_id())) {
-                    tvCategory.setText(c.getString(1));
+                    if (currentLanguage.equals("ar"))
+                        tvCategory.setText(c.getString(1));
+                    else
+                        tvCategory.setText(c.getString(2));
 
                 }
             }
@@ -117,11 +120,14 @@ public class ReportDetailsActivity extends BaseActivity {
             Cursor c = db.rawQuery("select * from types", null);
 
             while (c.moveToNext()) {
-                System.out.println(c.getString(0) + "\n" + report.getType_id());
-                System.out.println("==================");
+
 
                 if (c.getString(0).equals(report.getType_id())) {
-                    tvType.setText(c.getString(1));
+                    if (currentLanguage.equals("ar"))
+                        tvType.setText(c.getString(1));
+                    else
+                        tvType.setText(c.getString(2));
+
                 }
             }
         } catch (Exception e) {

@@ -19,7 +19,6 @@
     <string name="enter_phone">الجوال</string>
     <string name="edit">تعديل</string>
     <string name="report_found_item">الإبلاغ عن العثور على غرض</string>
-    <string name="category">فئة</string>
     <string name="type">النوع</string>
     <string name="date">التاريخ</string>
     <string name="found_at">مكان العثور</string>
@@ -28,7 +27,6 @@
     <string name="item_description">وصف الغرض</string>
     <string name="electronic">الكتروني</string>
     <string name="type_">"النوع : "</string>
-    <string name="category_">"الفئة : "</string>
     <string name="phone">جوال</string>
     <string name="place">الموقع</string>
     <string name="claim">الحصول عليها</string>
@@ -43,8 +41,8 @@
     <string name="go">بحث</string>
     <string name="sign_out">تسجيل الخروج</string>
     <string name="view_lost_items">عرض الاغراض المفقودة</string>
-    <string name="i_found_an_item">لقد وجدت غرض</string>
-    <string name="i_lost_an_item">لقد فقدت غرض</string>
+    <string name="i_found_an_item"> وجدت غرض</string>
+    <string name="i_lost_an_item"> فقدت غرض</string>
     <string name="reset_your_password">إعادة تعين كلمة المرور</string>
     <string name="please_enter_your_email_address">الرجاء إدخال بريدك الالكتروني</string>
     <string name="reset">إستعادة</string>
@@ -67,6 +65,12 @@
     <string name="RegError">خطأ في التسجيل</string>
     <string name="invalid_Code">الرمز غير صحيح</string>
     <string name="otp">تم إرسال رمز التحقق</string>
+    <string name="ask_lanugage">تغيير اللغة؟</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
     <string name="need_email">يجب إدخال البريد الالكتروني</string>
     <string name="category">الفئة</string>
+    <string name="language">تغيير اللغة</string>
+    <string name="found_items">أشياء عُثر عليها</string>
+    <string name="offices">مكتب المفقودات</string>
 </resources>

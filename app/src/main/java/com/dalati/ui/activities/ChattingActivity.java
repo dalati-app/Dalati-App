@@ -7,13 +7,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dalati.R;
 import com.dalati.ui.adapters.MessageAdapter;
+import com.dalati.ui.base.BaseActivity;
 import com.dalati.ui.models.Chat;
 import com.dalati.ui.models.ChatMessage;
 import com.google.firebase.auth.FirebaseAuth;
@@ -107,6 +107,7 @@ public class ChattingActivity extends BaseActivity {
                 ChatMessage chatMessage = new ChatMessage(userId, anotherId, message, currentDate);
 
                 String messageId = databaseReference.push().getKey();
+                assert messageId != null;
                 databaseReference.child(messageId).setValue(chatMessage);
                 DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("ChatList");
 

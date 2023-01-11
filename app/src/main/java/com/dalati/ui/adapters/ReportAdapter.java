@@ -24,7 +24,10 @@ import com.dalati.ui.models.Report;
 import com.dalati.ui.models.Type;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -42,10 +45,15 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ImageViewH
     public static final int ITEM_TYPE_LIST = 0;
     private int VIEW_TYPE = 0;
     List<Report> tempReportList;
+    String currentLanguage;
+    Date date;
 
+    private static final SimpleDateFormat dateFormatterNew = new SimpleDateFormat("dd MMM yyyy");
+    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
     public ReportAdapter(Context context) {
         this.mContext = context;
+        currentLanguage = Locale.getDefault().getLanguage();
         getCategory();
         getTypes();
     }
@@ -84,22 +92,35 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ImageViewH
                     .centerCrop()
                     .into(holder.reportImage);
         }
+        date = null;
+        try {
+            date = format.parse(reportObj.getPublishing_date());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         if (typeList != null && categoryList != null && reportList != null) {
             for (Type type : typeList) {
 
                 if (type.getId().equals(reportObj.getType_id())) {
-                    holder.tvType.setText(type.getNameEn());
+                    if (currentLanguage.equals("ar"))
+                        holder.tvType.setText(type.getNameAr());
+                    else
+                        holder.tvType.setText(type.getNameEn());
                 }
             }
 
             for (Category category : categoryList) {
                 if (category.getId().equals(reportObj.getCategory_id())) {
-                    holder.tvCategory.setText(category.getNameEn());
+                    if (currentLanguage.equals("ar"))
+                        holder.tvCategory.setText(category.getNameAr());
+                    else
+                        holder.tvCategory.setText(category.getNameEn());
                 }
             }
         }
-        holder.tvDate.setText(reportObj.getDate());
+        assert date != null;
+        holder.tvDate.setText(String.valueOf(dateFormatterNew.format(date)));
         holder.tvDescription.setText(reportObj.getDescription());
 
         holder.cvReport.startAnimation(AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.anim_recycler4));
