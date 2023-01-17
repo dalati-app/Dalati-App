@@ -3,6 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Hussein/AndroidStudioProjects/Dalati/app/src/main/res/layout/activity_edit_account.xml" value="0.1" />
+        <entry key="..\:/Users/Hussein/AndroidStudioProjects/Dalati/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Users/Hussein/AndroidStudioProjects/Dalati/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Hussein/AndroidStudioProjects/Dalati/app/src/main/res/layout/activity_report.xml" value="0.1" />
+        <entry key="..\:/Users/Hussein/AndroidStudioProjects/Dalati/app/src/main/res/layout/activity_report_details.xml" value="0.1" />
+        <entry key="..\:/Users/Hussein/AndroidStudioProjects/Dalati/app/src/main/res/layout/activity_search.xml" value="0.22" />
+        <entry key="..\:/Users/Hussein/AndroidStudioProjects/Dalati/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
+        <entry key="..\:/Users/Hussein/AndroidStudioProjects/Dalati/app/src/main/res/layout/confirm_password_dialog.xml" value="0.1" />
+        <entry key="..\:/Users/Hussein/AndroidStudioProjects/Dalati/app/src/main/res/layout/filter_item.xml" value="0.1" />
+        <entry key="..\:/Users/Hussein/AndroidStudioProjects/Dalati/app/src/main/res/layout/fragment_explore.xml" value="0.22" />
+        <entry key="..\:/Users/Hussein/AndroidStudioProjects/Dalati/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/Hussein/AndroidStudioProjects/Dalati/app/src/main/res/layout/item_container_reciver_message.xml" value="0.1" />
+        <entry key="..\:/Users/Hussein/AndroidStudioProjects/Dalati/app/src/main/res/layout/item_container_sent_message.xml" value="0.1" />
+        <entry key="..\:/Users/Hussein/AndroidStudioProjects/Dalati/app/src/main/res/layout/language_dialog.xml" value="0.1" />
+        <entry key="..\:/Users/Hussein/AndroidStudioProjects/Dalati/app/src/main/res/layout/nav_header_main.xml" value="0.25" />
+        <entry key="..\:/Users/Hussein/AndroidStudioProjects/Dalati/app/src/main/res/layout/report_item.xml" value="0.1" />
+        <entry key="..\:/Users/Hussein/AndroidStudioProjects/Dalati/app/src/main/res/layout/report_item_grid.xml" value="0.1" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/background_chat_input.xml" value="0.1" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/background_image.xml" value="0.204" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/background_reciver_message.xml" value="0.187" />

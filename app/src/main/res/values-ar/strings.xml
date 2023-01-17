@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Dalati</string>
     <string name="enter_password">كلمة المرور</string>
-    <string name="forget_password">نسيت كلمة المرور؟</string>
+    <string name="forget_password">"نسيت كلمة المرور،"</string>
     <string name="don_t_have_an_account">ليس لديك حساب ؟</string>
     <string name="sign_up">اشتراك</string>
     <string name="sign_in">تسجيل الدخول</string>
@@ -76,4 +76,10 @@
     <string name="about">عن ضالتي</string>
     <string name="my_requests">طلباتي</string>
     <string name="hello_sara">مرحبا سارة...</string>
+    <string name="age_error">يجب إدخال العمر</string>
+    <string name="male">ذكر</string>
+    <string name="female">أنثى</string>
+    <string name="prefer">أفضل عدم الأجابة</string>
+    <string name="search_by">البحث عن طريق الموقع ، النوع  ، الوصف</string>
+
 </resources>

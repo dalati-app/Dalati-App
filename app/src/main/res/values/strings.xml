@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Dalati</string>
     <string name="enter_password">Enter password</string>
-    <string name="forget_password">Forget Password?</string>
+    <string name="forget_password">"I Forget my Password ,"</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_in">Sign in</string>
@@ -11,7 +11,7 @@
     <string name="resend_code">Resend code</string>
     <string name="verify">Verify</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="message">Message</string>
     <string name="sent_email">We Sent you an email for resetting password</string>
     <string name="name_required">Name is required</string>
@@ -79,6 +79,11 @@
     <string name="about">About</string>
     <string name="my_requests">My Requests</string>
     <string name="hello_sara">Hello Sara,</string>
+    <string name="age_error">Age is Required</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="prefer">Prefer not to say</string>
+    <string name="search_by">Search by location, type, description</string>
 
 
 </resources>

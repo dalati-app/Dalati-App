@@ -50,7 +50,7 @@ public class SearchActivity extends BaseActivity {
                 (SearchView) findViewById(R.id.search_bar);
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(this.getComponentName()));
-        searchView.setQueryHint("Search by location, type, description");
+        searchView.setQueryHint(getString(R.string.search_by));
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

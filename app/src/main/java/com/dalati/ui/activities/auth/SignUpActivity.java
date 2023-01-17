@@ -49,7 +49,8 @@ public class SignUpActivity extends BaseActivity {
     ArrayAdapter<String> adapter_gender;
     CountryCodePicker ccp;
     String gender, otpCode;
-    int age, responseCode = 0;
+    int age;
+    int responseCode = 0;
 
 
     @Override
@@ -75,8 +76,9 @@ public class SignUpActivity extends BaseActivity {
         drop_menu_gender = findViewById(R.id.dropdown_gender);
         ccp = (CountryCodePicker) findViewById(R.id.ccp);
         auth = FirebaseAuth.getInstance();
-        drop_genderList.add("Male");
-        drop_genderList.add("Female");
+        drop_genderList.add(getString(R.string.male));
+        drop_genderList.add(getString(R.string.female));
+        drop_genderList.add(getString(R.string.prefer));
         adapter_gender = new ArrayAdapter<String>(getApplicationContext(), R.layout.filter_item, drop_genderList);
         drop_menu_gender.setAdapter(adapter_gender);
 
@@ -120,7 +122,7 @@ public class SignUpActivity extends BaseActivity {
         email = etEmail.getText().toString().trim();
         password = etPassword.getText().toString().trim();
         String tempAge = etAge.getText().toString();
-        age = Integer.parseInt(tempAge);
+        gender=drop_menu_gender.getText().toString();
         phone = ccp.getSelectedCountryCodeWithPlus() + phone;
 
 
@@ -159,27 +161,38 @@ public class SignUpActivity extends BaseActivity {
 
         }
 
+
+        if (tempAge.length()==0) {
+            etAge.setError(getString(R.string.age_error));
+            etAge.requestFocus();
+            flag = true;
+        }
+        else {
+            age = Integer.parseInt(tempAge);
+
+        }
+
         if (password.isEmpty()) {
             etPassword.setError(getString(R.string.pass_));
             etPassword.requestFocus();
             flag = true;
-
         }
-
         if (phone.length() < 9) {
             etPhone.setError(getString(R.string.phone_required));
             etPhone.requestFocus();
             flag = true;
-
         }
-
-
         if (!isValidPassword(password)) {
             etPassword.setError(getString(R.string.pass1));
             flag = true;
         }
 
-
+        if (gender.isEmpty())
+        {
+            drop_menu_gender.setError("Gender is Required");
+            drop_menu_gender.requestFocus();
+            flag=true;
+        }
         if (!flag) {
             progressbar.setVisibility(View.VISIBLE);
             btnSignUp.setVisibility(View.INVISIBLE);
@@ -195,7 +208,7 @@ public class SignUpActivity extends BaseActivity {
                         intent.putExtra("name", name);
                         intent.putExtra("email", email);
                         intent.putExtra("password", password);
-                        intent.putExtra("age", age);
+                        intent.putExtra("age", SignUpActivity.this.age);
                         intent.putExtra("gender", gender);
                         intent.putExtra("verificationId", otpCode);
                         Toast.makeText(SignUpActivity.this, R.string.otp, Toast.LENGTH_SHORT).show();

@@ -110,20 +110,38 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/tvReset"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/forget_password"
-            android:textColor="#5D5F61"
-            android:textSize="12sp" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="2dp"
+                android:text="@string/forget_password"
+                android:textColor="#5D5F61"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/reset"
+                android:textColor="@color/mainColor"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            >
 
             <Button
                 android:id="@+id/btnSignIn"
@@ -143,7 +161,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
