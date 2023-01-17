@@ -19,6 +19,7 @@
         android:textColor="@color/mainColor"
         android:textSize="@dimen/_15sdp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/btnSearch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,21 +28,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="10dp"
         android:background="@null"
         android:src="@drawable/ic_search_normal"
-        app:layout_constraintEnd_toStartOf="@id/btnLinear"
+        app:layout_constraintEnd_toStartOf="@id/btnFilter"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/btnLinear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@null"
-        android:src="@drawable/ic_row_vertical"
-        app:layout_constraintEnd_toStartOf="@id/btnGrid"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/btnGrid"
@@ -58,14 +50,15 @@
 
     <ImageButton
         android:id="@+id/btnFilter"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="10dp"
         android:background="@null"
         android:src="@drawable/ic_baseline_filter_alt_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnGrid"
+        app:layout_constraintEnd_toStartOf="@id/btnGrid"
+        app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/mainColor" />
 
 

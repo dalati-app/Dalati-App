@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -45,10 +47,10 @@ import java.util.Locale;
  * create an instance of this fragment.
  */
 public class ExploreFragment extends Fragment {
-    ImageButton btnSearch, btnGrid, btnLinear, btnFilter;
+    ImageButton btnSearch, btnGrid, btnFilter;
     View view;
     Dialog filterDialog;
-
+    boolean isGrid = false;
     ArrayList<String> drop_categoryList = new ArrayList<>();
     AutoCompleteTextView drop_menu_category;
     ArrayAdapter<String> adapter_category;
@@ -130,7 +132,6 @@ public class ExploreFragment extends Fragment {
     private void defineViews() {
 
         btnGrid = view.findViewById(R.id.btnGrid);
-        btnLinear = view.findViewById(R.id.btnLinear);
         btnSearch = view.findViewById(R.id.btnSearch);
         btnFilter = view.findViewById(R.id.btnFilter);
         recycler_reports = view.findViewById(R.id.reports_recycler);
@@ -165,22 +166,26 @@ public class ExploreFragment extends Fragment {
         btnGrid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (isGrid) {
+                    reportAdapter.setVIEW_TYPE(0);
+                    recycler_reports.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+                    recycler_reports.setAdapter(reportAdapter);
+                    btnGrid.setImageResource(R.drawable.ic_element_3);
+                    isGrid=false;
+                } else {
 
-                reportAdapter.setVIEW_TYPE(1);
-                recycler_reports.setLayoutManager(gridLayoutManager);
-                recycler_reports.setAdapter(reportAdapter);
+                    reportAdapter.setVIEW_TYPE(1);
+                    recycler_reports.setLayoutManager(gridLayoutManager);
+                    recycler_reports.setAdapter(reportAdapter);
+                    btnGrid.setImageResource(R.drawable.ic_row_vertical);
+                    isGrid= true;
+
+                }
+
+
             }
         });
 
-        btnLinear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                reportAdapter.setVIEW_TYPE(0);
-                recycler_reports.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-                recycler_reports.setAdapter(reportAdapter);
-            }
-        });
     }
 
     private void filtering() {
