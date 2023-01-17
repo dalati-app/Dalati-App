@@ -73,4 +73,7 @@
     <string name="language">تغيير اللغة</string>
     <string name="found_items">أشياء عُثر عليها</string>
     <string name="offices">مكتب المفقودات</string>
+    <string name="about">عن ضالتي</string>
+    <string name="my_requests">طلباتي</string>
+    <string name="hello_sara">مرحبا سارة...</string>
 </resources>

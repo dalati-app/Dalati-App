@@ -125,8 +125,6 @@ public class ChatFragment extends Fragment {
         chat_recyclerView.setHasFixedSize(true);
         chat_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         chatMessageList = new ArrayList<>();
-
-
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -138,7 +136,6 @@ public class ChatFragment extends Fragment {
                 String messageId = databaseReference.push().getKey();
                 databaseReference.child(messageId).setValue(chatMessage);
                 DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("ChatList");
-
                 Chat chat = new Chat(userId, userId, message, currentDate);
                 databaseReference1.child(anotherId).child(userId).setValue(chat);
                 etMessage.setText("");

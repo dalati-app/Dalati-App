@@ -55,9 +55,9 @@ public class SignUpActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         defineViews();
     }
+
     @Override
     public int defineLayout() {
         return R.layout.activity_sign_up;
@@ -75,7 +75,6 @@ public class SignUpActivity extends BaseActivity {
         drop_menu_gender = findViewById(R.id.dropdown_gender);
         ccp = (CountryCodePicker) findViewById(R.id.ccp);
         auth = FirebaseAuth.getInstance();
-
         drop_genderList.add("Male");
         drop_genderList.add("Female");
         adapter_gender = new ArrayAdapter<String>(getApplicationContext(), R.layout.filter_item, drop_genderList);
@@ -131,6 +130,7 @@ public class SignUpActivity extends BaseActivity {
                 gender = (String) adapterView.getItemAtPosition(i);
             }
         });
+
         Boolean flag = false;
 
 
@@ -151,6 +151,7 @@ public class SignUpActivity extends BaseActivity {
         }
 
 
+        //to validate the email
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             etEmail.setError(getString(R.string.need_email));
             etEmail.requestFocus();
@@ -229,6 +230,7 @@ public class SignUpActivity extends BaseActivity {
             public void run() {
                 try {
 
+                    // Call the Api to send OTP CODE
                     otpCode = String.valueOf(generateOTP());
                     String content = "{\r\n    \"message\": \"مرحبا بك في تطبيق ضالتي  \\nرمز تحققك هو: " + otpCode + " \",\r\n    \"to\": \"" + phone + "\",\r\n    \"bypass_optout\": true,\r\n    \"sender_id\": \"SMSto\",\r\n    \"callback_url\": \"https://example.com/callback/handler\"\r\n}";
                     OkHttpClient client = new OkHttpClient().newBuilder()

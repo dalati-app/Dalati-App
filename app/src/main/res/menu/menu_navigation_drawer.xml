@@ -5,9 +5,9 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_cat"
+            android:id="@+id/nav_requests"
             android:icon="@drawable/ic_element_3"
-            android:title="@string/test" />
+            android:title="@string/my_requests" />
 
         <item
             android:id="@+id/nav_language"
@@ -21,21 +21,34 @@
         android:id="@+id/g2"
         android:checkableBehavior="single">
 
-        <item
-            android:id="@+id/nav_share"
-            android:icon="@drawable/ic_calendar"
-            android:title="@string/share" />
-
 
     </group>
 
+    <group
+        android:id="@+id/g22"
+        android:checkableBehavior="single">
+
+
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_baseline_share_24"
+            android:title="@string/share" />
+
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_baseline_info_24"
+            android:iconTint="@color/mainColor"
+            android:title="@string/about" />
+
+    </group>
     <group
         android:id="@+id/g3"
         android:checkableBehavior="single">
 
         <item
             android:id="@+id/log_out"
-            android:icon="@drawable/ic_element_3"
+            android:icon="@drawable/ic_baseline_login_24"
+            android:iconTint="@color/mainColor"
             android:title="@string/log_out" />
 
 

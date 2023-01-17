@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import com.dalati.ui.adapters.ReportAdapter;
 import com.dalati.ui.models.Category;
 import com.dalati.ui.models.Report;
 import com.dalati.ui.models.Type;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -65,7 +67,7 @@ public class ExploreFragment extends Fragment {
     String currentLang, categoryId, typeId;
     int categoryIndex, typeIndex;
     private GridLayoutManager gridLayoutManager;
-
+    ShimmerFrameLayout shimmerFrameLayout;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -114,7 +116,13 @@ public class ExploreFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_explore, container, false);
         defineViews();
-        getCategories();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getCategories();
+            }
+        }, 2000);
         filtering();
         return view;
     }
@@ -126,6 +134,8 @@ public class ExploreFragment extends Fragment {
         btnSearch = view.findViewById(R.id.btnSearch);
         btnFilter = view.findViewById(R.id.btnFilter);
         recycler_reports = view.findViewById(R.id.reports_recycler);
+        shimmerFrameLayout = view.findViewById(R.id.shimmer);
+        shimmerFrameLayout.startShimmer();
 
         recycler_reports.setHasFixedSize(true);
         recycler_reports.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -348,6 +358,9 @@ public class ExploreFragment extends Fragment {
                     }
                     reportAdapter.setReportList(reportList);
                     recycler_reports.setAdapter(reportAdapter);
+                    shimmerFrameLayout.stopShimmer();
+                    shimmerFrameLayout.setVisibility(View.GONE);
+                    recycler_reports.setVisibility(View.VISIBLE);
 
                 }
             }

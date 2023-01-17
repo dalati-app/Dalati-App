@@ -76,6 +76,9 @@
     <string name="language">Language</string>
     <string name="found_items">Found Items</string>
     <string name="offices">Officer</string>
+    <string name="about">About</string>
+    <string name="my_requests">My Requests</string>
+    <string name="hello_sara">Hello Sara,</string>
 
 
 </resources>

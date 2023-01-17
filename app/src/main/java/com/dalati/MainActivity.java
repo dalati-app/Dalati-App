@@ -296,11 +296,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 if (currentLanguage.equals("en")) {
                     newLanguage = "ar";
                     ViewCompat.setLayoutDirection(getWindow().getDecorView(), ViewCompat.LAYOUT_DIRECTION_RTL);
-
                 } else if (currentLanguage.equals("ar")) {
                     newLanguage = "en";
                     ViewCompat.setLayoutDirection(getWindow().getDecorView(), ViewCompat.LAYOUT_DIRECTION_LTR);
-
                 }
 
                 languageManager.updateResources(newLanguage);

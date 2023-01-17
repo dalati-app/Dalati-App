@@ -87,6 +87,8 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ImageViewH
         if (reportObj.getImages() == null) {
 
         } else {
+
+            // convert url to image
             Glide.with(mContext)
                     .load(reportObj.getImages().get(0))
                     .centerCrop()

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cvReport"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp"
+    android:orientation="vertical"
+>
+
+
+<include layout="@layout/report_item"/>
+<include layout="@layout/report_item"/>
+<include layout="@layout/report_item"/>
+<include layout="@layout/report_item"/>
+</LinearLayout>

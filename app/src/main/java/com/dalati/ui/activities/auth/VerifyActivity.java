@@ -47,6 +47,7 @@ public class VerifyActivity extends BaseActivity {
     public int defineLayout() {
         return R.layout.activity_verify;
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +84,7 @@ public class VerifyActivity extends BaseActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 bt_verify.setVisibility(View.INVISIBLE);
 
-                Toast.makeText(VerifyActivity.this, verificationId+"\n"+myCode, Toast.LENGTH_SHORT).show();
+                Toast.makeText(VerifyActivity.this, verificationId + "\n" + myCode, Toast.LENGTH_SHORT).show();
                 if (myCode.equals(verificationId)) {
                     mAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(VerifyActivity.this, new OnCompleteListener<AuthResult>() {
@@ -212,7 +213,6 @@ public class VerifyActivity extends BaseActivity {
         inputCode2 = findViewById(R.id.inputCode2);
         inputCode3 = findViewById(R.id.inputCode3);
         inputCode4 = findViewById(R.id.inputCode4);
-
         bt_verify = findViewById(R.id.btnVerify);
         progressBar = findViewById(R.id.progressBar);
 
@@ -238,7 +238,7 @@ public class VerifyActivity extends BaseActivity {
                 if (!s.toString().trim().isEmpty()) {
                     inputCode2.requestFocus();
                 } else {
-                    Toast.makeText(getApplicationContext(), string.enter_phone , Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), string.enter_phone, Toast.LENGTH_LONG).show();
                 }
             }
 

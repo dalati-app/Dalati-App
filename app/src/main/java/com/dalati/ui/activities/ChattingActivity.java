@@ -50,8 +50,10 @@ public class ChattingActivity extends BaseActivity {
         textName = findViewById(R.id.textName);
         btnBack = findViewById(R.id.imageBack);
         firebaseAuth = FirebaseAuth.getInstance();
-        userId = firebaseAuth.getCurrentUser().getUid();
-     //   anotherId = getIntent().getStringExtra("anotherId");
+        if (firebaseAuth.getCurrentUser() != null) {
+            userId = firebaseAuth.getCurrentUser().getUid();
+        }
+        //   anotherId = getIntent().getStringExtra("anotherId");
         name = getIntent().getStringExtra("name");
         textName.setText(name);
 
@@ -74,7 +76,7 @@ public class ChattingActivity extends BaseActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 chatMessageList.clear();
-                if (snapshot.exists()){
+                if (snapshot.exists()) {
                     for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                         ChatMessage chatMessage = postSnapshot.getValue(ChatMessage.class);
                         if (chatMessage.getSenderId().equals(userId) || chatMessage.getReceiverId().equals(userId)) {
@@ -86,9 +88,9 @@ public class ChattingActivity extends BaseActivity {
                     }
 
 
-                messageAdapter = new MessageAdapter(ChattingActivity.this, chatMessageList);
-                chat_recyclerView.setAdapter(messageAdapter);
-                chat_recyclerView.scrollToPosition(chatMessageList.size() - 1);
+                    messageAdapter = new MessageAdapter(ChattingActivity.this, chatMessageList);
+                    chat_recyclerView.setAdapter(messageAdapter);
+                    chat_recyclerView.scrollToPosition(chatMessageList.size() - 1);
                 }
             }
 
