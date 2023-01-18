@@ -6,6 +6,7 @@
     android:layout_gravity="center"
     android:orientation="vertical">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/logo_layout"
         android:layout_width="match_parent"
