@@ -26,13 +26,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="20dp"
+android:layout_marginTop="10dp"
         android:fontFamily="@font/amiri"
         android:text="اللَّهُمَّ رَبَّ الضَّالَّةِ ، رُدَّ عَلَيَّ ضَالَّتِي بِقُدْرَتِكَ وَسُلْطَانِكَ "
         android:textColor="@color/mainColor"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintTop_toBottomOf="@id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

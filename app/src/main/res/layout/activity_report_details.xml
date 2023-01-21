@@ -220,6 +220,7 @@
 
 
     </LinearLayout>
+
     <Button
         android:id="@+id/btnClaim"
         android:layout_width="match_parent"

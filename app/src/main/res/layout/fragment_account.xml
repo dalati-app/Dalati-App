@@ -10,10 +10,9 @@
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/profileImg"
-        android:layout_width="@dimen/_70sdp"
-        android:layout_height="@dimen/_70sdp"
+        android:layout_width="@dimen/_75sdp"
+        android:layout_height="@dimen/_75sdp"
         android:layout_marginTop="30dp"
-        android:padding="9dp"
         android:scaleType="centerCrop"
         android:src="@drawable/icon_male"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +20,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:riv_corner_radius="50dp" />
 
+    <ImageButton
+        android:id="@+id/btnEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-15dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_button"
+        android:backgroundTint="@color/mainColor"
+        android:padding="3dp"
+        android:src="@drawable/ic_baseline_edit_24"
+        app:layout_constraintBottom_toBottomOf="@id/profileImg"
+        app:layout_constraintStart_toEndOf="@id/profileImg"
+        app:layout_constraintTop_toTopOf="@id/profileImg"
+        app:tint="@color/white" />
+
     <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -128,14 +143,35 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/btnEdit"
+        <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+
+            android:id="@+id/group_choices"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/edit"
-            android:textColor="@color/secondary_text"
-            android:textSize="@dimen/_12sdp" />
+            android:background="@drawable/bg_button"
+            android:backgroundTint="#AEABAB"
+
+            app:tbgCheckedButton="@+id/choice_a">
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/choice_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="Arabic" />
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/choice_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="English" />
+
+
+        </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
+
     </LinearLayout>
 
     <Button
@@ -151,5 +187,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

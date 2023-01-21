@@ -54,9 +54,9 @@
                 android:id="@+id/add_image"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
+                android:padding="20dp"
                 android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_baseline_add_photo_alternate_24"
+                android:src="@drawable/ic_add_picture"
                 app:tint="@color/mainColor" />
 
             <androidx.viewpager2.widget.ViewPager2
@@ -86,7 +86,7 @@
             app:boxCornerRadiusTopStart="12dp"
             app:boxStrokeColor="@color/mainColor"
             app:errorEnabled="true"
-            app:startIconDrawable="@drawable/ic_person"
+            app:startIconDrawable="@drawable/ic_element_3"
             app:startIconTint="@color/mainColor">
 
             <AutoCompleteTextView
@@ -109,7 +109,7 @@
             app:boxCornerRadiusTopStart="12dp"
             app:boxStrokeColor="@color/mainColor"
             app:errorEnabled="true"
-            app:startIconDrawable="@drawable/ic_person"
+            app:startIconDrawable="@drawable/ic_category"
             app:startIconTint="@color/mainColor">
 
             <AutoCompleteTextView

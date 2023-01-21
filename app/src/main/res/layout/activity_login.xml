@@ -120,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/forget_password"
                 android:textColor="#5D5F61"
                 android:textSize="12sp" />
@@ -129,7 +129,8 @@
                 android:id="@+id/tvReset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="7dp"
                 android:text="@string/reset"
                 android:textColor="@color/mainColor"
                 android:textSize="15sp"
@@ -141,8 +142,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            >
+            android:layout_marginTop="30dp">
 
             <Button
                 android:id="@+id/btnSignIn"
@@ -154,16 +154,17 @@
                 android:text="@string/sign_in"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
