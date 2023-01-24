@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -17,7 +16,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -70,6 +68,7 @@ public class ExploreFragment extends Fragment {
     int categoryIndex, typeIndex;
     private GridLayoutManager gridLayoutManager;
     ShimmerFrameLayout shimmerFrameLayout;
+    boolean isCategorySelected, isTypeSelected;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -159,7 +158,8 @@ public class ExploreFragment extends Fragment {
         btnFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                isCategorySelected = false;
+                isTypeSelected = false;
                 filterDialog.show();
             }
         });
@@ -171,14 +171,14 @@ public class ExploreFragment extends Fragment {
                     recycler_reports.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
                     recycler_reports.setAdapter(reportAdapter);
                     btnGrid.setImageResource(R.drawable.ic_element_3);
-                    isGrid=false;
+                    isGrid = false;
                 } else {
 
                     reportAdapter.setVIEW_TYPE(1);
                     recycler_reports.setLayoutManager(gridLayoutManager);
                     recycler_reports.setAdapter(reportAdapter);
                     btnGrid.setImageResource(R.drawable.ic_row_vertical);
-                    isGrid= true;
+                    isGrid = true;
 
                 }
 
@@ -202,15 +202,20 @@ public class ExploreFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 List<Report> tempReportList = new ArrayList<>();
-                for (Report report : reportList) {
-                    System.out.println("Dalati cId: " + report.getCategory_id());
-                    System.out.println("Dalati selected: " + categoryId);
-                    if (categoryId.equals(report.getCategory_id())) {
-                        tempReportList.add(report);
+                if (isCategorySelected && isTypeSelected) {
+                    for (Report report : reportList) {
+                        if (categoryId.equals(report.getCategory_id())
+                                && typeId.equals(report.getType_id())) {
+                            tempReportList.add(report);
+                        }
+                    }
+                } else if (isCategorySelected) {
+                    for (Report report : reportList) {
+                        if (categoryId.equals(report.getCategory_id())) {
+                            tempReportList.add(report);
+                        }
                     }
                 }
-
-
                 reportAdapter.setReportList(tempReportList);
                 filterDialog.dismiss();
 
@@ -223,6 +228,7 @@ public class ExploreFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 categoryIndex = i;
                 categoryId = categoryList.get(i).getId();
+                isCategorySelected = true;
                 drop_menu_type.setText(R.string.choose_Type);
                 databaseReference.child("Types").child(categoryId).addValueEventListener(new ValueEventListener() {
                     @Override
@@ -268,6 +274,7 @@ public class ExploreFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 typeIndex = i;
                 typeId = typeList.get(i).getId();
+                isTypeSelected = true;
             }
         });
 

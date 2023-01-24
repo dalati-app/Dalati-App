@@ -132,7 +132,6 @@ public class ChatFragment extends Fragment {
                 SimpleDateFormat currentDateFormat = new SimpleDateFormat("dd/MM/yyy HH:mm");
                 String currentDate = currentDateFormat.format(calForDate.getTime());
                 ChatMessage chatMessage = new ChatMessage(userId, anotherId, message, currentDate);
-
                 String messageId = databaseReference.push().getKey();
                 databaseReference.child(messageId).setValue(chatMessage);
                 DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("ChatList");

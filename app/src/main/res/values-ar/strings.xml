@@ -81,5 +81,11 @@
     <string name="female">أنثى</string>
     <string name="prefer">أفضل عدم الأجابة</string>
     <string name="search_by">البحث عن طريق الموقع ، النوع  ، الوصف</string>
+    <string name="english">إنجليزي</string>
+    <string name="arabic">عربي</string>
+    <string-array name="languages">
+        <item>@string/arabic</item>
+        <item>@string/english</item>
+    </string-array>
 
 </resources>

@@ -84,6 +84,12 @@
     <string name="female">Female</string>
     <string name="prefer">Prefer not to say</string>
     <string name="search_by">Search by location, type, description</string>
+    <string name="english">English</string>
+    <string name="arabic">Arabic</string>
+    <string-array name="languages">
+        <item>@string/arabic</item>
+        <item>@string/english</item>
+    </string-array>
 
 
 </resources>

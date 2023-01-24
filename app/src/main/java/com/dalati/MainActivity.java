@@ -2,6 +2,7 @@ package com.dalati;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.dalati.ui.activities.RequestsActivity;
 import com.dalati.ui.base.BaseActivity;
 import com.dalati.ui.base.LanguageManager;
 import com.dalati.ui.fragments.AccountFragment;
@@ -40,7 +42,7 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, AccountFragment.OnLanguageSelectedListener {
     ChipNavigationBar bottomNav;
     FragmentManager fragmentManager;
     DatabaseReference databaseReference;
@@ -51,8 +53,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     NavigationView navigationView;
     ImageView menuIcon;
     Dialog language_dialog;
-
     LanguageManager languageManager;
+    Fragment fragment = null;
 
 
     @Override
@@ -64,6 +66,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
         menuIcon = findViewById(R.id.menu_icon);
+        languageManager = new LanguageManager(this);
 
 
         table_Creation();
@@ -72,11 +75,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         navigationDrawer();
         langDialog();
 
-
         bottomNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int i) {
-                Fragment fragment = null;
                 switch (i) {
                     case R.id.nav_home:
                         fragment = new HomeFragment();
@@ -110,15 +111,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         });
         bottomNav.setItemSelected(R.id.nav_home, true);
 
-        //Hello Team
-        //Hi
     }
 
     @Override
     public int defineLayout() {
         return R.layout.activity_main;
     }
-
 
     private void saveToLocalDB() {
         categoryList = new ArrayList<>();
@@ -261,6 +259,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_language:
                 language_dialog.show();
                 break;
+
+            case R.id.nav_requests:
+                startActivity(new Intent(getApplicationContext(), RequestsActivity.class));
+                break;
         }
         return true;
     }
@@ -302,12 +304,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 }
 
                 languageManager.updateResources(newLanguage);
-
-
-                //  setLocal(lang);
-
                 language_dialog.cancel();
-
                 recreate();
             }
         });
@@ -325,5 +322,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     }
 
+    @Override
+    public void onLanguageSelected(String language) {
+        languageManager.updateResources(language);
+        restartActivity();
+    }
 
+    public void restartActivity() {
+        Intent intent = new Intent(MainActivity.this,MainActivity.class);
+        finish();
+        startActivity(intent);
+    }
 }

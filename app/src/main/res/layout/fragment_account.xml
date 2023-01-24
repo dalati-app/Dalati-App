@@ -35,15 +35,35 @@
         app:layout_constraintTop_toTopOf="@id/profileImg"
         app:tint="@color/white" />
 
+    <ImageView
+        android:id="@+id/imgAward"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_award_medal_badge_svgrepo_com"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileImg" />
+
+    <TextView
+        android:id="@+id/tvAward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4 found"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgAward" />
+
     <LinearLayout
         android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileImg">
+        app:layout_constraintTop_toBottomOf="@+id/tvAward">
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -143,36 +163,25 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
-
-            android:id="@+id/group_choices"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_button"
-            android:backgroundTint="#AEABAB"
-
-            app:tbgCheckedButton="@+id/choice_a">
-
-            <com.nex3z.togglebuttongroup.button.CircularToggle
-                android:id="@+id/choice_a"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:text="Arabic" />
-
-            <com.nex3z.togglebuttongroup.button.CircularToggle
-                android:id="@+id/choice_b"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:text="English" />
-
-
-        </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
-
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_baseline_language_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear"
+        app:tint="@color/mainColor" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_marginStart="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/img"
+        app:layout_constraintTop_toBottomOf="@id/linear" />
 
     <Button
         android:id="@+id/btnSignOut"
@@ -188,5 +197,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

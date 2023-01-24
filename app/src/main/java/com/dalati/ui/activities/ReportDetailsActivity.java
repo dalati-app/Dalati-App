@@ -14,13 +14,18 @@ import android.widget.Toast;
 import com.dalati.R;
 import com.dalati.ui.base.BaseActivity;
 import com.dalati.ui.models.Report;
+import com.dalati.ui.models.Request;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -34,6 +39,8 @@ public class ReportDetailsActivity extends BaseActivity {
     ImageButton btnChat;
     Button btnClaim;
     String currentLanguage = Locale.getDefault().getLanguage();
+    DatabaseReference databaseReference;
+    FirebaseAuth firebaseAuth;
 
 
     @Override
@@ -60,6 +67,8 @@ public class ReportDetailsActivity extends BaseActivity {
         btnChat = findViewById(R.id.btnChat);
         imageSlider = findViewById(R.id.image_slider);
         btnClaim = findViewById(R.id.btnClaim);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
 
         btnChat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,11 +87,21 @@ public class ReportDetailsActivity extends BaseActivity {
                         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                             @Override
                             public void onClick(SweetAlertDialog sDialog) {
+                                String id = databaseReference.push().getKey();
+                                assert id != null;
+                                Request request = new Request(id, Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid(), report.getId(), 0, "");
+                                databaseReference.child("Requests").child(id).setValue(request);
                                 sDialog.setTitleText("Request Sent")
                                         .setContentText("You can now chat with admin to check")
                                         .setConfirmText("OK")
                                         .setConfirmClickListener(null)
                                         .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                            }
+                        }).setCancelText("Cancel")
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.dismiss();
                             }
                         }).show();
             }

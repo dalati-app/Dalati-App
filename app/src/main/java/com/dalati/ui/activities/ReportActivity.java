@@ -64,7 +64,7 @@ public class ReportActivity extends BaseActivity {
     String currentLang, categoryId, typeId;
     int categoryIndex, typeIndex;
     ViewPager2 adsViewPager;
-    int report_type ;
+    int report_type;
 
     TextInputLayout foundLayout, dateLayout;
     TextView tvTitle;
@@ -198,8 +198,6 @@ public class ReportActivity extends BaseActivity {
                 }
             } else if (data.getData() != null) {
                 String imagePath = data.getData().getPath();
-                Toast.makeText(this, imagePath, Toast.LENGTH_SHORT).show();
-                //do something with the image (save it to some directory or whatever you need to do with it here)
             }
 
             for (int i = 0; i < imagesList.size(); i++) {
@@ -233,7 +231,6 @@ public class ReportActivity extends BaseActivity {
                                             if (urlStrings.size() == imagesList.size()) {
                                                 store(urlStrings);
                                             }
-
                                         }
                                     }
                             );
@@ -259,7 +256,6 @@ public class ReportActivity extends BaseActivity {
         } else {
             Report report = new Report(report_id, publisher_id, "none", publisher_id, "none", categoryId, typeId, date, place, description, 0, report_type, true, urlStrings);
             databaseReference.child("Reports").child(report_id).setValue(report);
-
         }
        /* for (int i = 0; i < urlStrings.size(); i++) {
             databaseReference.child("Images").child(report_id).child(String.valueOf(i)).setValue(urlStrings.get(i));

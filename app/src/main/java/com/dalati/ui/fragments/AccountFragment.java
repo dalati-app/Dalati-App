@@ -1,5 +1,6 @@
 package com.dalati.ui.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,11 +8,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -20,6 +25,8 @@ import com.bumptech.glide.Glide;
 import com.dalati.R;
 import com.dalati.ui.activities.EditAccountActivity;
 import com.dalati.ui.activities.auth.LoginActivity;
+import com.dalati.ui.base.LanguageManager;
+import com.dalati.ui.models.Request;
 import com.dalati.ui.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,12 +37,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
+import java.util.Locale;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AccountFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AccountFragment extends Fragment {
+public class AccountFragment extends Fragment
+        implements AdapterView.OnItemSelectedListener {
     View view;
     EditText etName, etPhone, etEmail;
     Button btnSignOut;
@@ -43,6 +53,33 @@ public class AccountFragment extends Fragment {
     ImageButton btnEdit;
     DatabaseReference databaseReference;
     ImageView profileImage;
+    String[] languages = new String[2];
+    String currentLanguage = Locale.getDefault().getLanguage();
+
+    LanguageManager languageManager;
+    OnLanguageSelectedListener mCallback;
+    int check = 0;
+    int noOfAwards = 0;
+
+    // Container Activity must implement this interface
+    public interface OnLanguageSelectedListener {
+        public void onLanguageSelected(String language);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (OnLanguageSelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
+    }
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -84,6 +121,7 @@ public class AccountFragment extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -102,7 +140,9 @@ public class AccountFragment extends Fragment {
         btnSignOut = view.findViewById(R.id.btnSignOut);
         btnEdit = view.findViewById(R.id.btnEdit);
         profileImage = view.findViewById(R.id.profileImg);
-
+        languageManager = new LanguageManager(getContext());
+        languages = getContext().getResources().getStringArray(R.array.languages);
+        initSpinner();
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,7 +171,6 @@ public class AccountFragment extends Fragment {
             etName.setText(user.getName());
             etEmail.setText(user.getEmail());
             etPhone.setText(user.getPhone());
-
             if (!user.getImgUrl().equals("Default")) {
                 Glide.with(getContext())
                         .load(user.getImgUrl())
@@ -152,6 +191,7 @@ public class AccountFragment extends Fragment {
                             etName.setText(user.getName());
                             etEmail.setText(user.getEmail());
                             etPhone.setText(user.getPhone());
+                            getAwards(user.getId());
                             saveObjectToSharedPreference(user);
 
                         }
@@ -175,7 +215,64 @@ public class AccountFragment extends Fragment {
         String json = gson.toJson(object);
         prefsEditor.putString("Key", json);
         prefsEditor.commit();
+    }
 
+    private void initSpinner() {
+        Spinner spinner = view.findViewById(R.id.spinner);
+        spinner.setOnItemSelectedListener(this);
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, languages);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        int selectedPosition = ((currentLanguage.equals("en")) ? 1 : 0);
+        spinner.setSelection(selectedPosition);
+        spinner.setOnItemSelectedListener(this); // Will call onItemSelected() Listener.
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String newLanguage = ((i == 0) ? "ar" : "en");
+        if (++check > 1) {
+            if (!currentLanguage.equals(newLanguage)) {
+                mCallback.onLanguageSelected(newLanguage);
+            }
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
+    private void getAwards(String userId) {
+        TextView tvAwards = view.findViewById(R.id.tvAward);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("Requests").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Request request = snapshot.getValue(Request.class);
+                    assert request != null;
+                    Toast.makeText(getContext(), userId, Toast.LENGTH_SHORT).show();
+                    if (userId.equals(request.getUser_id())) {
+                        noOfAwards += 1;
+                    }
+
+                }
+
+                if (noOfAwards == 0) {
+                    tvAwards.setText("You didn't find any items yet");
+                } else {
+                    tvAwards.setText("You helped " + String.valueOf(noOfAwards) + " People to find their items");
+                }
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 }

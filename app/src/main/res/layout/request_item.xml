@@ -32,7 +32,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginBottom="5dp"
-
                 android:background="@drawable/bg_category"
                 android:backgroundTint="@color/mainColor"
                 android:gravity="center"
@@ -54,7 +53,7 @@
             android:layout_marginStart="5dp"
             android:orientation="vertical"
             android:paddingTop="10dp"
-            android:paddingBottom="5dp">
+            >
 
             <TextView
                 android:id="@+id/tvType"
@@ -99,7 +98,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/view" />
 
                 <ImageView
-                    android:layout_marginStart="10dp"
                     android:id="@+id/image"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
@@ -112,15 +110,36 @@
                     android:id="@+id/tvReportDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginBottom="3dp"
                     android:gravity="center"
                     android:text="12/2/2022"
                     android:textAlignment="center"
                     android:textSize="13dp"
                     android:textStyle="bold"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginBottom="3dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/image" />
+
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/bg_category"
+                    android:backgroundTint="@color/grey_font"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Pending"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+
+
+                    />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
