@@ -253,7 +253,6 @@ public class AccountFragment extends Fragment
                 if (snapshot.exists()) {
                     Request request = snapshot.getValue(Request.class);
                     assert request != null;
-                    Toast.makeText(getContext(), userId, Toast.LENGTH_SHORT).show();
                     if (userId.equals(request.getUser_id())) {
                         noOfAwards += 1;
                     }

@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -116,16 +117,23 @@ public class ExploreFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_explore, container, false);
-        defineViews();
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                getCategories();
-            }
-        }, 2000);
-        filtering();
-        return view;
+
+        try {
+            defineViews();
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    getCategories();
+                }
+            }, 2000);
+            filtering();
+            return view;
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            return view;
+        }
+
     }
 
     private void defineViews() {
@@ -321,32 +329,34 @@ public class ExploreFragment extends Fragment {
         databaseReference.child("Categories").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    Category category = postSnapshot.getValue(Category.class);
-                    categoryList.add(category);
+                if (snapshot.exists()) {
+                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                        Category category = postSnapshot.getValue(Category.class);
+                        categoryList.add(category);
+                    }
+                    // reportAdapter.setCategoryList(categoryList);
+                    // saveObjectToSharedPreference(categoryList);
+
+
+                    currentLang = Locale.getDefault().getLanguage();
+                    switch (currentLang) {
+                        case "ar":
+                            for (int i = 0; i < categoryList.size(); i++) {
+                                drop_categoryList.add(categoryList.get(i).getNameAr());
+                            }
+                            break;
+
+
+                        case "en":
+                            for (int i = 0; i < categoryList.size(); i++) {
+                                drop_categoryList.add(categoryList.get(i).getNameEn());
+                            }
+                            break;
+                    }
+
+                    adapter_category = new ArrayAdapter<String>(getContext(), R.layout.filter_item, drop_categoryList);
+                    drop_menu_category.setAdapter(adapter_category);
                 }
-                // reportAdapter.setCategoryList(categoryList);
-                // saveObjectToSharedPreference(categoryList);
-
-
-                currentLang = Locale.getDefault().getLanguage();
-                switch (currentLang) {
-                    case "ar":
-                        for (int i = 0; i < categoryList.size(); i++) {
-                            drop_categoryList.add(categoryList.get(i).getNameAr());
-                        }
-                        break;
-
-
-                    case "en":
-                        for (int i = 0; i < categoryList.size(); i++) {
-                            drop_categoryList.add(categoryList.get(i).getNameEn());
-                        }
-                        break;
-                }
-
-                adapter_category = new ArrayAdapter<String>(getContext(), R.layout.filter_item, drop_categoryList);
-                drop_menu_category.setAdapter(adapter_category);
             }
 
 

@@ -119,11 +119,9 @@ public class ReportDetailsActivity extends BaseActivity {
             while (c.moveToNext()) {
 
                 if (c.getString(0).equals(report.getCategory_id())) {
-                    if (currentLanguage.equals("ar"))
-                        tvCategory.setText(c.getString(1));
-                    else
-                        tvCategory.setText(c.getString(2));
-
+                    String categoryS;
+                    categoryS = ((currentLanguage.equals("ar")) ? c.getString(2) : c.getString(1));
+                    tvCategory.setText(categoryS);
                 }
             }
         } catch (Exception e) {
@@ -142,11 +140,9 @@ public class ReportDetailsActivity extends BaseActivity {
 
 
                 if (c.getString(0).equals(report.getType_id())) {
-                    if (currentLanguage.equals("ar"))
-                        tvType.setText(c.getString(1));
-                    else
-                        tvType.setText(c.getString(2));
-
+                    String typeS;
+                    typeS = ((currentLanguage.equals("ar")) ? c.getString(2) : c.getString(1));
+                    tvCategory.setText(typeS);
                 }
             }
         } catch (Exception e) {
@@ -156,8 +152,6 @@ public class ReportDetailsActivity extends BaseActivity {
 
     private void getReportData() {
         report = (Report) getIntent().getSerializableExtra("report");
-        tvCategory.setText(report.getCategory_id());
-        tvType.setText(report.getType_id());
         tvDescription.setText(report.getDescription());
         tvDate.setText(report.getDate());
         tvPlace.setText(report.getPlace());
