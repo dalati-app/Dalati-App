@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
@@ -36,6 +37,7 @@ public class SearchActivity extends BaseActivity {
     List<Category> categoryList;
     List<Type> typeList;
     LottieAnimationView lottieAnimationView;
+    ImageView btnBack;
 
 
     @Override
@@ -85,6 +87,7 @@ public class SearchActivity extends BaseActivity {
         searchView = findViewById(R.id.search_bar);
         recycler_reports = findViewById(R.id.reports_recycler);
         lottieAnimationView = findViewById(R.id.lottieAnimationView);
+        btnBack = findViewById(R.id.btnBack);
 
         recycler_reports.setHasFixedSize(true);
         recycler_reports.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
@@ -93,6 +96,19 @@ public class SearchActivity extends BaseActivity {
         typeList = new ArrayList<>();
         reportList = new ArrayList<>();
         reportAdapter = new ReportAdapter(this);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchView.requestFocus();
+            }
+        });
 
     }
 

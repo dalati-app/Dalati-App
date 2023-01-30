@@ -172,14 +172,36 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ImageViewH
 
         } else {
             System.out.println("------------------");
-            System.out.println("You locks for: " + charText);
+            System.out.println("You looks for: " + charText);
             for (Report obj : tempReportList) {
                 if (obj.getDescription().toLowerCase().contains(charText)
-                        || obj.getPlace().contains(charText)
-                        || obj.getDescription().contains(charText)) {
+                        || obj.getPlace().toLowerCase().contains(charText)) {
                     reportList.add(obj);
                 }
             }
+
+         /*   for (Category category : categoryList) {
+                if (category.getNameAr().contains(charText)
+                        || category.getNameEn().contains(charText)) {
+                    for (Report report : tempReportList) {
+                        if (report.getCategory_id().equals(category.getId())) {
+                            reportList.add(report);
+                        }
+                    }
+                }
+            }
+*/
+            for (Type type : typeList) {
+                if (type.getNameAr().contains(charText)
+                        || type.getNameEn().contains(charText)) {
+                    for (Report report : tempReportList) {
+                        if (report.getType_id().equals(type.getId())) {
+                            reportList.add(report);
+                        }
+                    }
+                }
+            }
+
         }
         notifyDataSetChanged();
     }

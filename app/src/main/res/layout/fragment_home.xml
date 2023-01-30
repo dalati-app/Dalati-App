@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="@string/hello_sara"
+        android:text="@string/hello"
         android:textSize="@dimen/_20sdp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/profileImg"

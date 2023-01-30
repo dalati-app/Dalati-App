@@ -105,8 +105,8 @@ public class ReportActivity extends BaseActivity {
         tvTitle = findViewById(R.id.tvTitle);
         report_type = getIntent().getIntExtra("report_type", 0);
         if (report_type == 2) {
-            dateLayout.setHint("Lost Since");
-            foundLayout.setHint("Lost Location");
+            dateLayout.setHint(R.string.lost_since);
+            foundLayout.setHint(R.string.lost_location);
             tvTitle.setText(R.string.report_lost);
         }
 

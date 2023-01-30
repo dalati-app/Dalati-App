@@ -95,7 +95,6 @@ public class SignUpActivity extends BaseActivity {
 
                 registerUser();
                 String otpCode = String.valueOf(generateOTP());
-                Toast.makeText(SignUpActivity.this, otpCode, Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -84,7 +84,6 @@ public class VerifyActivity extends BaseActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 bt_verify.setVisibility(View.INVISIBLE);
 
-                Toast.makeText(VerifyActivity.this, verificationId + "\n" + myCode, Toast.LENGTH_SHORT).show();
                 if (myCode.equals(verificationId)) {
                     mAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(VerifyActivity.this, new OnCompleteListener<AuthResult>() {
