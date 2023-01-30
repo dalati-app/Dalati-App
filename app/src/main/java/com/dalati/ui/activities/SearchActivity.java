@@ -53,6 +53,12 @@ public class SearchActivity extends BaseActivity {
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(this.getComponentName()));
         searchView.setQueryHint(getString(R.string.search_by));
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchView.requestFocus();
+            }
+        });
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

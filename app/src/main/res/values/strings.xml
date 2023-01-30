@@ -90,6 +90,8 @@
     <string name="dfghn">\"Hello \"</string>
     <string name="lost_since">Lost since</string>
     <string name="lost_location">Lost at</string>
+    <string name="uploading">Uploading</string>
+    <string name="report_uploaded_successfully">Report Uploaded Successfully</string>
     <string-array name="languages">
         <item>@string/arabic</item>
         <item>@string/english</item>

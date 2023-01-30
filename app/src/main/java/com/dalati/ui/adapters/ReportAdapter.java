@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -195,6 +196,8 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ImageViewH
                 if (type.getNameAr().contains(charText)
                         || type.getNameEn().contains(charText)) {
                     for (Report report : tempReportList) {
+                        Log.i("TAGi", "filter: " + report.getType_id() + "//" + type.getId());
+                        Log.i("TAGi", "filter: -------------------------------");
                         if (report.getType_id().equals(type.getId())) {
                             reportList.add(report);
                         }
@@ -203,6 +206,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ImageViewH
             }
 
         }
+
         notifyDataSetChanged();
     }
 

@@ -14,8 +14,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,13 +23,16 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.dalati.R;
 import com.dalati.ui.adapters.ModernImageSlider;
 import com.dalati.ui.base.BaseActivity;
 import com.dalati.ui.models.Category;
 import com.dalati.ui.models.Report;
 import com.dalati.ui.models.Type;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -38,6 +41,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -68,6 +72,8 @@ public class ReportActivity extends BaseActivity {
 
     TextInputLayout foundLayout, dateLayout;
     TextView tvTitle;
+    LottieAnimationView lottieAnimationView;
+    LinearLayout uploadLinearLayout, linearSuccess;
 
 
     ArrayList<String> drop_categoryList = new ArrayList<>();
@@ -103,6 +109,11 @@ public class ReportActivity extends BaseActivity {
         foundLayout = findViewById(R.id.foundLayout);
         dateLayout = findViewById(R.id.dateLayout);
         tvTitle = findViewById(R.id.tvTitle);
+        uploadLinearLayout = findViewById(R.id.linearUpload);
+        linearSuccess = findViewById(R.id.linearSuccess);
+        lottieAnimationView = findViewById(R.id.lottieAnimationView);
+
+
         report_type = getIntent().getIntExtra("report_type", 0);
         if (report_type == 2) {
             dateLayout.setHint(R.string.lost_since);
@@ -113,7 +124,7 @@ public class ReportActivity extends BaseActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
         progressDialog = new ProgressDialog(ReportActivity.this);
-        progressDialog.setMessage("Uploading Images please Wait.........!!!!!!");
+        progressDialog.setTitle(getString(R.string.uploading));
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -194,7 +205,6 @@ public class ReportActivity extends BaseActivity {
                         //do something with the image (save it to some directory or whatever you need to do with it here)
                         urls = urls + "\n" + String.valueOf(imageUri);
                     }
-                    Toast.makeText(this, urls, Toast.LENGTH_SHORT).show();
                 }
             } else if (data.getData() != null) {
                 String imagePath = data.getData().getPath();
@@ -235,8 +245,15 @@ public class ReportActivity extends BaseActivity {
                                     }
                             );
                         }
-                    }
-            );
+                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                    String size = String.format("Uploading Images:\n %5.2f MB transferred",
+                            snapshot.getBytesTransferred() / 1024.0 / 1024.0);
+                    progressDialog.setMessage(size);
+
+                }
+            });
         }
     }
 
@@ -249,14 +266,30 @@ public class ReportActivity extends BaseActivity {
         String report_id = databaseReference.push().getKey();
         String publisher_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        Report report = null;
         if (report_type == 1) {
-            Report report = new Report(report_id, publisher_id, "none", "none", publisher_id, categoryId, typeId, date, place, description, 0, report_type, true, urlStrings);
-            databaseReference.child("Reports").child(report_id).setValue(report);
+            report = new Report(report_id, publisher_id, "none", "none", publisher_id, categoryId, typeId, date, place, description, 0, report_type, true, urlStrings);
 
         } else {
-            Report report = new Report(report_id, publisher_id, "none", publisher_id, "none", categoryId, typeId, date, place, description, 0, report_type, true, urlStrings);
-            databaseReference.child("Reports").child(report_id).setValue(report);
+            report = new Report(report_id, publisher_id, "none", publisher_id, "none", categoryId, typeId, date, place, description, 0, report_type, true, urlStrings);
         }
+        assert report_id != null;
+        databaseReference.child("Reports").child(report_id).setValue(report).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    uploadLinearLayout.setVisibility(View.GONE);
+                    linearSuccess.setVisibility(View.VISIBLE);
+                    findViewById(R.id.btnClose).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            finish();
+                        }
+                    });
+
+                }
+            }
+        });
        /* for (int i = 0; i < urlStrings.size(); i++) {
             databaseReference.child("Images").child(report_id).child(String.valueOf(i)).setValue(urlStrings.get(i));
         }*/
