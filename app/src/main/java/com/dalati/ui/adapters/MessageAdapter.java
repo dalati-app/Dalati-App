@@ -21,6 +21,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
 
@@ -35,7 +36,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     String userId = firebaseAuth.getCurrentUser().getUid();
-    ;
+    String currentLang = Locale.getDefault().getLanguage();
 
 
     public MessageAdapter(Context mContext, List<ChatMessage> mChat) {
@@ -48,11 +49,26 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == MSG_TYPE_RIGHT) {
-            View view = LayoutInflater.from(mContext).inflate(R.layout.item_container_sent_message, parent, false);
+            View view;
+            if (currentLang.equals("ar")) {
+                view = LayoutInflater.from(mContext).inflate(R.layout.item_container_sent_message_ar, parent, false);
+
+            } else {
+                view = LayoutInflater.from(mContext).inflate(R.layout.item_container_sent_message, parent, false);
+            }
+
             System.out.println("You're right");
             return new ViewHolder(view);
         } else if (viewType == MSG_TYPE_LEFT) {
-            View view = LayoutInflater.from(mContext).inflate(R.layout.item_container_reciver_message, parent, false);
+            View view;
+
+            if (currentLang.equals("ar")) {
+                view = LayoutInflater.from(mContext).inflate(R.layout.item_container_reciver_message_ar, parent, false);
+
+            } else {
+                view = LayoutInflater.from(mContext).inflate(R.layout.item_container_reciver_message, parent, false);
+
+            }
             System.out.println("You're left");
             return new ViewHolder(view);
         } else {

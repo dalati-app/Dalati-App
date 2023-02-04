@@ -6,7 +6,9 @@
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/background_chat_input.xml" value="0.1" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/background_image.xml" value="0.204" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/background_reciver_message.xml" value="0.187" />
+        <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/background_reciver_message_ar.xml" value="0.1945" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/background_sent_message.xml" value="0.1" />
+        <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/background_sent_message_ar.xml" value="0.1945" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/bg_button.xml" value="0.16" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/bg_category.xml" value="0.187" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/bg_dialog.xml" value="0.153" />
@@ -21,7 +23,7 @@
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable-v24/login_bk.xml" value="0.308" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable/background_blue.xml" value="0.2015" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable/bg_chat_header.xml" value="0.187" />
-        <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable/bg_gradient.xml" value="0.25" />
+        <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable/bg_gradient.xml" value="0.2" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable/custom_input.xml" value="0.1" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable/ic_badge.xml" value="0.1615" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.333" />
@@ -47,7 +49,7 @@
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/activity_test.xml" value="0.2" />
-        <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/activity_verify.xml" value="0.33" />
+        <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/activity_verify.xml" value="0.25" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/bottom_sheet_dialog_layout.xml" value="0.2" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/confirm_password_dialog.xml" value="0.3625" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/filter_dialog.xml" value="0.30092592592592593" />
@@ -55,10 +57,13 @@
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/fragment_account.xml" value="0.26062322946175637" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/fragment_chat.xml" value="0.33" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/fragment_explore.xml" value="0.3625" />
-        <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/fragment_home.xml" value="0.3625" />
+        <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/fragment_item_list.xml" value="0.17135416666666667" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/item_container_reciver_message.xml" value="0.2" />
+        <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/item_container_reciver_message_ar.xml" value="0.2" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/item_container_sent_message.xml" value="0.2" />
+        <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/item_container_sent_message_ar.xml" value="0.2" />
+        <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/item_container_sent_message_en.xml" value="0.2" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/language_dialog.xml" value="0.10833333333333334" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/nav_header_main.xml" value="0.2" />
         <entry key="..\:/Users/Mohammed/Desktop/Wusol System/Apps/Dalati/app/src/main/res/layout/report_item.xml" value="0.3625" />

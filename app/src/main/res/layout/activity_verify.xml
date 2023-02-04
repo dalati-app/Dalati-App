@@ -76,6 +76,7 @@
                     android:textSize="@dimen/medium_txt_size" />
 
                 <EditText
+                    android:gravity="center"
                     android:id="@+id/inputCode2"
                     android:layout_width="45dp"
                     android:layout_height="50dp"
@@ -88,6 +89,7 @@
                     android:textSize="@dimen/medium_txt_size" />
 
                 <EditText
+                    android:gravity="center"
                     android:id="@+id/inputCode3"
                     android:layout_width="45dp"
                     android:layout_height="50dp"
@@ -100,6 +102,7 @@
                     android:textSize="@dimen/medium_txt_size" />
 
                 <EditText
+                    android:gravity="center"
                     android:id="@+id/inputCode4"
                     android:layout_width="45dp"
                     android:layout_height="50dp"

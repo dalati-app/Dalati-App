@@ -23,6 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.dalati.ui.activities.RequestsActivity;
+import com.dalati.ui.activities.auth.LoginActivity;
 import com.dalati.ui.base.BaseActivity;
 import com.dalati.ui.base.LanguageManager;
 import com.dalati.ui.fragments.AccountFragment;
@@ -32,6 +33,7 @@ import com.dalati.ui.fragments.HomeFragment;
 import com.dalati.ui.models.Category;
 import com.dalati.ui.models.Type;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -263,6 +265,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_requests:
                 startActivity(new Intent(getApplicationContext(), RequestsActivity.class));
                 break;
+
+            case R.id.log_out:
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                firebaseAuth.signOut();
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                finish();
+                break;
         }
         return true;
     }
@@ -329,7 +338,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     public void restartActivity() {
-        Intent intent = new Intent(MainActivity.this,MainActivity.class);
+        Intent intent = new Intent(MainActivity.this, MainActivity.class);
         finish();
         startActivity(intent);
     }

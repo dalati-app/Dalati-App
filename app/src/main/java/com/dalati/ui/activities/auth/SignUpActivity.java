@@ -3,6 +3,7 @@ package com.dalati.ui.activities.auth;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
@@ -121,7 +122,7 @@ public class SignUpActivity extends BaseActivity {
         email = etEmail.getText().toString().trim();
         password = etPassword.getText().toString().trim();
         String tempAge = etAge.getText().toString();
-        gender=drop_menu_gender.getText().toString();
+        gender = drop_menu_gender.getText().toString();
         phone = ccp.getSelectedCountryCodeWithPlus() + phone;
 
 
@@ -161,12 +162,11 @@ public class SignUpActivity extends BaseActivity {
         }
 
 
-        if (tempAge.length()==0) {
+        if (tempAge.length() == 0) {
             etAge.setError(getString(R.string.age_error));
             etAge.requestFocus();
             flag = true;
-        }
-        else {
+        } else {
             age = Integer.parseInt(tempAge);
 
         }
@@ -186,11 +186,10 @@ public class SignUpActivity extends BaseActivity {
             flag = true;
         }
 
-        if (gender.isEmpty())
-        {
+        if (gender.isEmpty()) {
             drop_menu_gender.setError("Gender is Required");
             drop_menu_gender.requestFocus();
-            flag=true;
+            flag = true;
         }
         if (!flag) {
             progressbar.setVisibility(View.VISIBLE);
@@ -216,6 +215,7 @@ public class SignUpActivity extends BaseActivity {
                         progressbar.setVisibility(View.INVISIBLE);
                         btnSignUp.setVisibility(View.VISIBLE);
                         Toast.makeText(SignUpActivity.this, R.string.try_again, Toast.LENGTH_SHORT).show();
+
                     }
                 }
             }, 4000);
@@ -259,10 +259,13 @@ public class SignUpActivity extends BaseActivity {
                     try {
                         Response response = client.newCall(request).execute();
                         responseCode = response.code();
+                        Toast.makeText(SignUpActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                        Log.i("TAGi", "run: " + response.toString());
 
 
                     } catch (IOException e) {
                         e.printStackTrace();
+                        Log.i("TAGi", "run: " + e.getMessage());
 
                     }
                 } catch (Exception e) {
