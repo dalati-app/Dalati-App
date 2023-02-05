@@ -196,29 +196,6 @@ public class SignUpActivity extends BaseActivity {
             btnSignUp.setVisibility(View.INVISIBLE);
             sendOTP();
 
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (responseCode == 200) {
-                        Intent intent = new Intent(getApplicationContext(), VerifyActivity.class);
-                        intent.putExtra("phone", phone);
-                        intent.putExtra("name", name);
-                        intent.putExtra("email", email);
-                        intent.putExtra("password", password);
-                        intent.putExtra("age", SignUpActivity.this.age);
-                        intent.putExtra("gender", gender);
-                        intent.putExtra("verificationId", otpCode);
-                        Toast.makeText(SignUpActivity.this, R.string.otp, Toast.LENGTH_SHORT).show();
-                        startActivity(intent);
-                    } else {
-                        progressbar.setVisibility(View.INVISIBLE);
-                        btnSignUp.setVisibility(View.VISIBLE);
-                        Toast.makeText(SignUpActivity.this, R.string.try_again, Toast.LENGTH_SHORT).show();
-
-                    }
-                }
-            }, 4000);
 
             //creating a new user
 
@@ -264,10 +241,10 @@ public class SignUpActivity extends BaseActivity {
                                               Log.w(TAG, "onVerificationFailed", e);
                                               progressbar.setVisibility(View.INVISIBLE);
                                               btnSignUp.setVisibility(View.VISIBLE);
+                                              Toast.makeText(SignUpActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
-                                              progressbar.setVisibility(View.INVISIBLE);
-                                              btnSignUp.setVisibility(View.VISIBLE);
                                               if (e instanceof FirebaseAuthInvalidCredentialsException) {
+
                                                   // Invalid request
                                               } else if (e instanceof FirebaseTooManyRequestsException) {
                                                   // The SMS quota for the project has been exceeded

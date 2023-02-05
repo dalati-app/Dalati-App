@@ -35,7 +35,7 @@ import com.google.gson.Gson;
 
 public class VerifyActivity extends BaseActivity {
 
-    EditText inputCode1, inputCode2, inputCode3, inputCode4;
+    EditText inputCode1, inputCode2, inputCode3, inputCode4, inputCode5, inputCode6;
     Button sign;
     private Button bt_verify;
     FirebaseAuth mAuth;
@@ -80,7 +80,9 @@ public class VerifyActivity extends BaseActivity {
                 myCode = inputCode1.getText().toString() +
                         inputCode2.getText().toString() +
                         inputCode3.getText().toString() +
-                        inputCode4.getText().toString();
+                        inputCode4.getText().toString() +
+                        inputCode5.getText().toString() +
+                        inputCode6.getText().toString();
 
                 progressBar.setVisibility(View.VISIBLE);
                 bt_verify.setVisibility(View.INVISIBLE);
@@ -88,64 +90,6 @@ public class VerifyActivity extends BaseActivity {
                 PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(verificationId, myCode);
                 signInWithPhoneAuthCredential(phoneAuthCredential);
 
-                if (myCode.equals(verificationId)) {
-                    mAuth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(VerifyActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-
-                                    //checking if success
-                                    if (task.isSuccessful()) {
-                                        id = mAuth.getCurrentUser().getUid();
-                                        User user = new User(id, name, email, phone, "End Users", token, gender, age);
-
-                                        System.out.println("I Signed");
-
-                                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                                        databaseReference.child("Tokens").child("End Users").child(id).setValue(token);
-                                        mdatabase.child("End Users").child(id).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                mdatabase.child(id).child("token").setValue(token);
-                                                saveObjectToSharedPreference(user);
-                                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                                finish();
-
-
-                                                //  startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                            }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(getApplicationContext(), "onFailure: Email not sent " + e.getMessage().toString(), Toast.LENGTH_LONG).show();
-
-                                            }
-                                        });
-
-
-                                    } else {
-                                        //display some message here
-                                        Toast.makeText(getApplicationContext(), R.string.RegError, Toast.LENGTH_LONG).show();
-                                    }
-
-                                    progressBar.setVisibility(View.INVISIBLE);
-                                    bt_verify.setVisibility(View.VISIBLE);
-
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getApplicationContext(), string.RegError + e.getMessage(), Toast.LENGTH_LONG).show();
-
-                                }
-                            });
-
-                } else {
-                    progressBar.setVisibility(View.INVISIBLE);
-                    bt_verify.setVisibility(View.VISIBLE);
-                    Toast.makeText(VerifyActivity.this, string.invalid_Code, Toast.LENGTH_SHORT).show();
-                }
 
             }
         });
@@ -171,32 +115,58 @@ public class VerifyActivity extends BaseActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         String TAG = "OtpVerificationActivity";
                         if (task.isSuccessful()) {
-                            id = mAuth.getCurrentUser().getUid();
-                            User user = new User(id, name, email, phone, "End Users", token, gender, age);
+                            mAuth.createUserWithEmailAndPassword(email, password)
+                                    .addOnCompleteListener(VerifyActivity.this, new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            System.out.println("I Signed");
+                                            //checking if success
+                                            if (task.isSuccessful()) {
+                                                id = mAuth.getCurrentUser().getUid();
+                                                User user = new User(id, name, email, phone, "End Users", token, gender, age);
 
-                            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                            databaseReference.child("Tokens").child("End Users").child(id).setValue(token);
-                            mdatabase.child("End Users").child(id).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
+                                                System.out.println("I Signed");
 
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    mdatabase.child(id).child("token").setValue(token);
-                                    saveObjectToSharedPreference(user);
-                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                    finish();
+                                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                                                databaseReference.child("Tokens").child("End Users").child(id).setValue(token);
+                                                mdatabase.child("End Users").child(id).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        mdatabase.child(id).child("token").setValue(token);
+                                                        saveObjectToSharedPreference(user);
+                                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                                        finish();
 
 
-                                    //  startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getApplicationContext(), "onFailure: Email not sent " + e.getMessage().toString(), Toast.LENGTH_LONG).show();
+                                                        //  startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                                    }
+                                                }).addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Toast.makeText(getApplicationContext(), "onFailure: Email not sent " + e.getMessage().toString(), Toast.LENGTH_LONG).show();
 
-                                }
-                            });
+                                                    }
+                                                });
+
+
+                                            } else {
+                                                //display some message here
+                                                Toast.makeText(getApplicationContext(), R.string.RegError, Toast.LENGTH_LONG).show();
+                                            }
+
+                                            progressBar.setVisibility(View.INVISIBLE);
+                                            bt_verify.setVisibility(View.VISIBLE);
+
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(getApplicationContext(), string.RegError + e.getMessage(), Toast.LENGTH_LONG).show();
+
+                                        }
+                                    });
+
 
 
                             Log.d(TAG, "signInWithCredential:success");
@@ -215,7 +185,6 @@ public class VerifyActivity extends BaseActivity {
                                 // The verification code entered was invalid
                                 progressBar.setVisibility(View.INVISIBLE);
                                 bt_verify.setVisibility(View.VISIBLE);
-                                Toast.makeText(getApplicationContext(), string.invalid_Code, Toast.LENGTH_LONG);
 
 
                             }
@@ -243,6 +212,8 @@ public class VerifyActivity extends BaseActivity {
         inputCode2 = findViewById(R.id.inputCode2);
         inputCode3 = findViewById(R.id.inputCode3);
         inputCode4 = findViewById(R.id.inputCode4);
+        inputCode5 = findViewById(R.id.inputCode5);
+        inputCode6 = findViewById(R.id.inputCode6);
         bt_verify = findViewById(R.id.btnVerify);
         progressBar = findViewById(R.id.progressBar);
 
@@ -316,6 +287,24 @@ public class VerifyActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!s.toString().trim().isEmpty()) {
+                    inputCode5.requestFocus();
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        inputCode5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().trim().isEmpty()) {
+                    inputCode6.requestFocus();
                 }
             }
 
