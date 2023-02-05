@@ -27,6 +27,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -83,6 +84,9 @@ public class VerifyActivity extends BaseActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
                 bt_verify.setVisibility(View.INVISIBLE);
+
+                PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(verificationId, myCode);
+                signInWithPhoneAuthCredential(phoneAuthCredential);
 
                 if (myCode.equals(verificationId)) {
                     mAuth.createUserWithEmailAndPassword(email, password)
@@ -167,13 +171,40 @@ public class VerifyActivity extends BaseActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         String TAG = "OtpVerificationActivity";
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+                            id = mAuth.getCurrentUser().getUid();
+                            User user = new User(id, name, email, phone, "End Users", token, gender, age);
+
+                            System.out.println("I Signed");
+
+                            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                            databaseReference.child("Tokens").child("End Users").child(id).setValue(token);
+                            mdatabase.child("End Users").child(id).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    mdatabase.child(id).child("token").setValue(token);
+                                    saveObjectToSharedPreference(user);
+                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                    finish();
+
+
+                                    //  startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getApplicationContext(), "onFailure: Email not sent " + e.getMessage().toString(), Toast.LENGTH_LONG).show();
+
+                                }
+                            });
 
 
                             Log.d(TAG, "signInWithCredential:success");
+                        }
+                        //display some message here
 
-                            // Update UI
-                        } else {
+
+                        else {
                             // Sign in failed, display a message and update the UI
                             Log.d(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(getApplicationContext(), task.getException().toString(), Toast.LENGTH_LONG);

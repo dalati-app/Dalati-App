@@ -1,5 +1,7 @@
 package com.dalati.ui.activities.auth;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,21 +23,20 @@ import com.dalati.ui.base.BaseActivity;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.hbb20.CountryCodePicker;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class SignUpActivity extends BaseActivity {
 
@@ -95,7 +96,6 @@ public class SignUpActivity extends BaseActivity {
             public void onClick(View view) {
 
                 registerUser();
-                String otpCode = String.valueOf(generateOTP());
             }
         });
 
@@ -236,65 +236,74 @@ public class SignUpActivity extends BaseActivity {
         progressbar.setVisibility(View.VISIBLE);
         btnSignUp.setVisibility(View.INVISIBLE);
 
-        Thread thread = new Thread(new Runnable() {
+        PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder(auth)
+                        .setPhoneNumber(phone)       // Phone number to verify
+                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                        .setActivity(this)                 // Activity (for callback binding)
+                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
-            @Override
-            public void run() {
-                try {
-
-                    // Call the Api to send OTP CODE
-                    otpCode = String.valueOf(generateOTP());
-                    String content = "{\r\n    \"message\": \"مرحبا بك في تطبيق ضالتي  \\nرمز تحققك هو: " + otpCode + " \",\r\n    \"to\": \"" + phone + "\",\r\n    \"bypass_optout\": true,\r\n    \"sender_id\": \"SMSto\",\r\n    \"callback_url\": \"https://example.com/callback/handler\"\r\n}";
-                    OkHttpClient client = new OkHttpClient().newBuilder()
-                            .build();
-                    MediaType mediaType = MediaType.parse("application/json");
-
-                    RequestBody body = RequestBody.create(mediaType, content);
-                    Request request = new Request.Builder()
-                            .url("https://api.sms.to/sms/send")
-                            .method("POST", body)
-                            .addHeader("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2F1dGg6ODA4MC9hcGkvdjEvdXNlcnMvYXBpL2tleS9nZW5lcmF0ZSIsImlhdCI6MTY3MTgzMzE3MywibmJmIjoxNjcxODMzMTczLCJqdGkiOiJXMWpTckplSDZWRkR0Y2FlIiwic3ViIjo0MDY0MTIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.EepuGxhwptHWNw_SShmoIu144Oo12b2OFXNLjXwnUZ8")
-                            .addHeader("Content-Type", "application/json")
-                            .build();
-                    try {
-                        Response response = client.newCall(request).execute();
-                        responseCode = response.code();
-                        Toast.makeText(SignUpActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
-                        Log.i("TAGi", "run: " + response.toString());
+                                          @Override
+                                          public void onVerificationCompleted(PhoneAuthCredential credential) {
 
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        Log.i("TAGi", "run: " + e.getMessage());
+                                              // This callback will be invoked in two situations:
+                                              // 1 - Instant verification. In some cases the phone number can be instantly
+                                              //     verified without needing to send or enter a verification code.
+                                              // 2 - Auto-retrieval. On some devices Google Play services can automatically
+                                              //     detect the incoming verification SMS and perform verification without
+                                              //     user action.
+                                              Log.d(TAG, "onVerificationCompleted:" + credential);
 
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                                          }
 
-                }
-            }
-        });
+                                          @Override
+                                          public void onVerificationFailed(FirebaseException e) {
+                                              // This callback is invoked in an invalid request for verification is made,
+                                              // for instance if the the phone number format is not valid.
+                                              Log.w(TAG, "onVerificationFailed", e);
+                                              progressbar.setVisibility(View.INVISIBLE);
+                                              btnSignUp.setVisibility(View.VISIBLE);
 
-        thread.start();
+                                              progressbar.setVisibility(View.INVISIBLE);
+                                              btnSignUp.setVisibility(View.VISIBLE);
+                                              if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                                                  // Invalid request
+                                              } else if (e instanceof FirebaseTooManyRequestsException) {
+                                                  // The SMS quota for the project has been exceeded
+                                              }
 
+                                              // Show a message and update the UI
+                                          }
+
+                                          @Override
+                                          public void onCodeSent(@NonNull String verificationId,
+                                                                 @NonNull PhoneAuthProvider.ForceResendingToken token) {
+                                              // The SMS verification code has been sent to the provided phone number, we
+                                              // now need to ask the user to enter the code and then construct a credential
+                                              // by combining the code with a verification ID.
+                                              Log.d(TAG, "onCodeSent:" + verificationId);
+                                              progressbar.setVisibility(View.INVISIBLE);
+                                              btnSignUp.setVisibility(View.VISIBLE);
+                                              Intent intent = new Intent(getApplicationContext(), VerifyActivity.class);
+                                              intent.putExtra("phone", phone);
+                                              intent.putExtra("name", name);
+                                              intent.putExtra("email", email);
+                                              intent.putExtra("password", password);
+                                              intent.putExtra("verificationId", verificationId);
+                                              intent.putExtra("age", SignUpActivity.this.age);
+                                              intent.putExtra("gender", gender);
+                                              Toast.makeText(SignUpActivity.this, R.string.otp, Toast.LENGTH_SHORT).show();
+                                              startActivity(intent);
+                                              // Save verification ID and resending token so we can use them later
+
+                                          }
+                                      }
+                        )
+                        .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
 
     }
 
-    private char[] generateOTP() {
-        String numbers = "0123456789";
-
-        // Using random method
-        Random rndm_method = new Random();
-
-        char[] otp = new char[4];
-
-        for (int i = 0; i < 4; i++) {
-            // Use of charAt() method : to get character value
-            // Use of nextInt() as it is scanning the value as int
-            otp[i] =
-                    numbers.charAt(rndm_method.nextInt(numbers.length()));
-        }
-        return otp;
-    }
 
 }
